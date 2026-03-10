@@ -1,5 +1,10 @@
 # Socratic RAG
 
+[![PyPI version](https://badge.fury.io/py/socratic-rag.svg)](https://badge.fury.io/py/socratic-rag)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Test Coverage](https://img.shields.io/badge/coverage-70%25-brightgreen.svg)](https://github.com/Nireus79/Socratic-rag)
+
 Production-grade Retrieval-Augmented Generation (RAG) package for Python.
 
 ## Features
