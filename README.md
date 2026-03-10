@@ -35,7 +35,7 @@ Production-grade Retrieval-Augmented Generation (RAG) package for Python.
 
 👉 **Full ecosystem guide**: See [Socrates Nexus ECOSYSTEM.md](https://github.com/Nireus79/Socrates-nexus/blob/main/ECOSYSTEM.md)
 
-📊 **Track development**: View the [Socrates Ecosystem Roadmap](https://github.com/users/Nireus79/projects) to see progress across all packages
+📊 **Track development**: View the [Socrates Ecosystem Roadmap](https://github.com/users/Nireus79/projects/3) to see progress across all packages
 
 ## Installation
 
