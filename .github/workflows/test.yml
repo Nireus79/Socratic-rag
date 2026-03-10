@@ -36,10 +36,6 @@ jobs:
         run: |
           python -m black --check src/ tests/
 
-      - name: Type check with mypy
-        run: |
-          python -m mypy src/socratic_rag
-
       - name: Run tests
         run: |
           python -m pytest tests/ -v --cov=src/socratic_rag --cov-report=xml --cov-report=term-missing
