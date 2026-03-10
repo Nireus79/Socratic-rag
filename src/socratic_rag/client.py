@@ -8,6 +8,8 @@ from .chunking.base import BaseChunker
 from .chunking.fixed_size import FixedSizeChunker
 from .vector_stores.base import BaseVectorStore
 from .vector_stores.chromadb import ChromaDBVectorStore
+from .vector_stores.qdrant import QdrantVectorStore
+from .vector_stores.faiss import FAISSVectorStore
 from .exceptions import ConfigurationError, ProviderNotFoundError
 
 
@@ -87,10 +89,18 @@ class RAGClient:
             return ChromaDBVectorStore(
                 collection_name=self.config.collection_name,
             )
+        elif self.config.vector_store == "qdrant":
+            return QdrantVectorStore(
+                collection_name=self.config.collection_name,
+            )
+        elif self.config.vector_store == "faiss":
+            return FAISSVectorStore(
+                collection_name=self.config.collection_name,
+            )
         else:
             raise ProviderNotFoundError(
                 f"Vector store provider '{self.config.vector_store}' not found. "
-                f"Available: chromadb"
+                f"Available: chromadb, qdrant, faiss"
             )
 
     def _create_embedder(self) -> BaseEmbedder:

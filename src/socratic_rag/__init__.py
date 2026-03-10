@@ -17,7 +17,7 @@ from .exceptions import (
 )
 from .embeddings import BaseEmbedder, SentenceTransformersEmbedder
 from .chunking import BaseChunker, FixedSizeChunker
-from .vector_stores import BaseVectorStore, ChromaDBVectorStore
+from .vector_stores import BaseVectorStore, ChromaDBVectorStore, QdrantVectorStore, FAISSVectorStore
 
 __version__ = "0.1.0"
 
@@ -44,4 +44,6 @@ __all__ = [
     "FixedSizeChunker",
     "BaseVectorStore",
     "ChromaDBVectorStore",
+    "QdrantVectorStore",
+    "FAISSVectorStore",
 ]
