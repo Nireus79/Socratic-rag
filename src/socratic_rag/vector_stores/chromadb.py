@@ -105,7 +105,7 @@ class ChromaDBVectorStore(BaseVectorStore):
                 ids=ids,
                 embeddings=embeddings,
                 documents=texts,
-                metadatas=metadatas,  # type: ignore[arg-type]
+                metadatas=metadatas,
             )
 
             return ids

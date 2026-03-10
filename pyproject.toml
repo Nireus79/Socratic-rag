@@ -104,6 +104,12 @@ ignore_missing_imports = false
 module = [
     "chromadb",
     "chromadb.*",
+]
+ignore_missing_imports = true
+follow_imports = "skip"
+
+[[tool.mypy.overrides]]
+module = [
     "qdrant_client.*",
     "PyPDF2",
     "faiss",
