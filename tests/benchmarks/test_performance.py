@@ -20,8 +20,7 @@ class TestPerformanceBenchmarks:
     def test_add_documents_performance(self, client, benchmark):
         """Benchmark document addition."""
         documents = [
-            (f"Document {i} content about topic {i % 5}", f"doc{i}.txt")
-            for i in range(100)
+            (f"Document {i} content about topic {i % 5}", f"doc{i}.txt") for i in range(100)
         ]
 
         def add_all():
@@ -37,8 +36,7 @@ class TestPerformanceBenchmarks:
         # Add documents
         for i in range(100):
             client.add_document(
-                f"Document {i} with content about Python and machine learning",
-                f"doc{i}.txt"
+                f"Document {i} with content about Python and machine learning", f"doc{i}.txt"
             )
 
         def search():
@@ -52,10 +50,7 @@ class TestPerformanceBenchmarks:
         """Benchmark context retrieval."""
         # Add documents
         for i in range(100):
-            client.add_document(
-                f"Document {i} content for context retrieval test",
-                f"doc{i}.txt"
-            )
+            client.add_document(f"Document {i} content for context retrieval test", f"doc{i}.txt")
 
         def retrieve():
             return client.retrieve_context("test query", top_k=5)
@@ -67,7 +62,7 @@ class TestPerformanceBenchmarks:
     def test_large_document_performance(self, client):
         """Test performance with large documents."""
         # Create a large document (100KB)
-        large_content = ("word " * 20000)  # ~100KB
+        large_content = "word " * 20000  # ~100KB
 
         start = time.time()
         doc_id = client.add_document(large_content, "large.txt")
@@ -96,8 +91,7 @@ class TestPerformanceBenchmarks:
 
         for i in range(num_docs):
             client.add_document(
-                f"Document {i} with unique content for performance testing",
-                f"doc{i}.txt"
+                f"Document {i} with unique content for performance testing", f"doc{i}.txt"
             )
 
         add_time = time.time() - start
@@ -177,10 +171,7 @@ class TestMemoryUsage:
         num_docs = 1000
 
         for i in range(num_docs):
-            client.add_document(
-                f"Document {i} content for memory testing",
-                f"doc{i}.txt"
-            )
+            client.add_document(f"Document {i} content for memory testing", f"doc{i}.txt")
 
         # Note: Actual memory measurement would require psutil or similar
         print("\nMemory characteristics:")
@@ -207,10 +198,7 @@ class TestScalability:
 
             # Add documents
             for i in range(num_docs):
-                client.add_document(
-                    f"Document {i} scaling test",
-                    f"doc{i}.txt"
-                )
+                client.add_document(f"Document {i} scaling test", f"doc{i}.txt")
 
             # Search
             start = time.time()

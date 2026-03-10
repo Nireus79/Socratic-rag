@@ -197,9 +197,7 @@ class QdrantVectorStore(BaseVectorStore):
                     end_char=payload["end_char"],
                 )
 
-                search_results.append(
-                    SearchResult(chunk=chunk, score=result.score)
-                )
+                search_results.append(SearchResult(chunk=chunk, score=result.score))
 
             return search_results
 

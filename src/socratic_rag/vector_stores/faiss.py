@@ -38,9 +38,7 @@ class FAISSVectorStore(BaseVectorStore):
             self.faiss = faiss
             self.np = np
             self.collection_name = collection_name
-            self.persist_directory = (
-                Path(persist_directory) if persist_directory else None
-            )
+            self.persist_directory = Path(persist_directory) if persist_directory else None
 
             self.index: Optional[Any] = None
             self.chunks: Dict[int, Chunk] = {}
@@ -51,8 +49,7 @@ class FAISSVectorStore(BaseVectorStore):
 
         except ImportError:
             raise VectorStoreError(
-                "faiss-cpu is required for FAISSVectorStore. "
-                "Install with: pip install faiss-cpu"
+                "faiss-cpu is required for FAISSVectorStore. " "Install with: pip install faiss-cpu"
             )
         except Exception as e:
             raise VectorStoreError(f"Failed to initialize FAISS: {e}")
@@ -275,8 +272,7 @@ class FAISSVectorStore(BaseVectorStore):
 
             # Remove from chunks dictionary
             ids_to_remove = [
-                idx for idx, chunk in self.chunks.items()
-                if chunk.chunk_id in document_ids
+                idx for idx, chunk in self.chunks.items() if chunk.chunk_id in document_ids
             ]
 
             for idx in ids_to_remove:

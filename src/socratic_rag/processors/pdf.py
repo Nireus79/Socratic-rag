@@ -77,8 +77,7 @@ class PDFProcessor(BaseDocumentProcessor):
             raise
         except ImportError:
             raise ProcessorError(
-                "PyPDF2 is required for PDF processing. "
-                "Install with: pip install PyPDF2"
+                "PyPDF2 is required for PDF processing. " "Install with: pip install PyPDF2"
             )
         except Exception as e:
             raise ProcessorError(f"Failed to process PDF file: {e}")

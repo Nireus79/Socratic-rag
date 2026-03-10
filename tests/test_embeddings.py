@@ -74,8 +74,6 @@ class TestSentenceTransformersEmbedder:
 
     def test_custom_model(self):
         """Test embedder with custom model."""
-        embedder = SentenceTransformersEmbedder(
-            model_name="all-MiniLM-L6-v2"
-        )
+        embedder = SentenceTransformersEmbedder(model_name="all-MiniLM-L6-v2")
         assert embedder.model_name == "all-MiniLM-L6-v2"
         assert embedder.dimension > 0

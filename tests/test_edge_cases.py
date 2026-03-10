@@ -127,41 +127,20 @@ class TestEdgeCases:
     # Metadata Edge Cases
     def test_document_with_large_metadata(self, client):
         """Test document with large metadata."""
-        large_metadata = {
-            f"key_{i}": f"value_{i}" * 100
-            for i in range(100)
-        }
-        doc_id = client.add_document(
-            "content",
-            "test.txt",
-            metadata=large_metadata
-        )
+        large_metadata = {f"key_{i}": f"value_{i}" * 100 for i in range(100)}
+        doc_id = client.add_document("content", "test.txt", metadata=large_metadata)
         assert doc_id is not None
 
     def test_document_with_nested_metadata(self, client):
         """Test document with nested metadata."""
-        nested_metadata = {
-            "level1": {
-                "level2": {
-                    "level3": "value"
-                }
-            }
-        }
-        doc_id = client.add_document(
-            "content",
-            "test.txt",
-            metadata=nested_metadata
-        )
+        nested_metadata = {"level1": {"level2": {"level3": "value"}}}
+        doc_id = client.add_document("content", "test.txt", metadata=nested_metadata)
         assert doc_id is not None
 
     def test_document_with_null_metadata_values(self, client):
         """Test document with null metadata values."""
         metadata = {"key1": None, "key2": "value"}
-        doc_id = client.add_document(
-            "content",
-            "test.txt",
-            metadata=metadata
-        )
+        doc_id = client.add_document("content", "test.txt", metadata=metadata)
         assert doc_id is not None
 
     # Multiple Operations
