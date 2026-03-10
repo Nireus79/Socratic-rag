@@ -90,9 +90,12 @@ ignore = ["E501", "UP006", "UP035"]  # Line too long (handled by black), Use lis
 
 [tool.mypy]
 python_version = "3.9"
-strict = false
+warn_return_any = true
+warn_unused_configs = true
+warn_redundant_casts = true
 warn_unused_ignores = true
 ignore_missing_imports = true
+no_implicit_optional = true
 
 [[tool.mypy.overrides]]
 module = [

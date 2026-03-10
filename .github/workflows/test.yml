@@ -36,6 +36,11 @@ jobs:
         run: |
           python -m black --check src/ tests/
 
+      - name: Type check with mypy
+        timeout-minutes: 5
+        run: |
+          python -m mypy src/socratic_rag --no-error-summary 2>&1 || true
+
       - name: Run tests
         run: |
           python -m pytest tests/ -v --cov=src/socratic_rag --cov-report=xml --cov-report=term-missing
