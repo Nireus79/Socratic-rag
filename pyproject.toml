@@ -60,6 +60,7 @@ dev = [
     "black>=23.0",
     "ruff>=0.1.0",
     "mypy>=1.0",
+    "chromadb>=0.4.0",
 ]
 
 [project.urls]
@@ -101,6 +102,8 @@ ignore_missing_imports = false
 
 [[tool.mypy.overrides]]
 module = [
+    "chromadb",
+    "chromadb.*",
     "qdrant_client.*",
     "PyPDF2",
     "faiss",
