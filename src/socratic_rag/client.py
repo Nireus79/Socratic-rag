@@ -206,11 +206,12 @@ class RAGClient:
             Various exceptions for search failures.
         """
         # Validate top_k
-        k = top_k or self.config.top_k
-        if k <= 0:
-            from .exceptions import VectorStoreError
+        from .exceptions import VectorStoreError
 
+        if top_k is not None and top_k <= 0:
             raise VectorStoreError("top_k must be a positive integer")
+
+        k = top_k if top_k is not None else self.config.top_k
 
         # Generate query embedding
         query_embedding = self.embedder.embed_text(query)

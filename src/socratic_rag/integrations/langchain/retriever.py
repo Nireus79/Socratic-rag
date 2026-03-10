@@ -41,7 +41,12 @@ class SocraticRAGRetriever:
             ImportError: If langchain is not installed.
         """
         try:
-            from langchain.schema import Document as LCDocument
+            # Try newer langchain API first
+            try:
+                from langchain_core.documents import Document as LCDocument
+            except ImportError:
+                # Fall back to older API
+                from langchain.schema import Document as LCDocument
         except ImportError:
             raise ImportError(
                 "langchain is required for LangChain integration. "
