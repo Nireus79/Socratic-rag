@@ -202,13 +202,20 @@ class RAGClient:
             List of SearchResult objects ordered by relevance.
 
         Raises:
+            VectorStoreError: If top_k is invalid.
             Various exceptions for search failures.
         """
+        # Validate top_k
+        k = top_k or self.config.top_k
+        if k <= 0:
+            from .exceptions import VectorStoreError
+
+            raise VectorStoreError("top_k must be a positive integer")
+
         # Generate query embedding
         query_embedding = self.embedder.embed_text(query)
 
         # Search vector store
-        k = top_k or self.config.top_k
         results = self.vector_store.search(
             query_embedding=query_embedding,
             top_k=k,
