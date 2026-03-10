@@ -1,0 +1,170 @@
+version: '3.8'
+
+services:
+  # Socratic RAG REST API Service
+  rag-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: socratic-rag-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - VECTOR_STORE=chromadb
+      - EMBEDDING_CACHE=true
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./data:/app/data
+      - ./chroma_data:/app/chroma_data
+    depends_on:
+      chromadb:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - rag-network
+    labels:
+      - "com.example.description=Socratic RAG REST API"
+
+  # ChromaDB Vector Store (in-container)
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: socratic-rag-chromadb
+    ports:
+      - "8001:8000"
+    volumes:
+      - chromadb_data:/chroma/chroma
+    environment:
+      - PERSIST_DIRECTORY=/chroma/chroma
+      - ANONYMIZED_TELEMETRY=false
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - rag-network
+    labels:
+      - "com.example.description=ChromaDB Vector Store"
+
+  # Qdrant Vector Store (optional - disabled by default)
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: socratic-rag-qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    environment:
+      - QDRANT_ALLOW_RECOVERY_MODE=true
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - rag-network
+    profiles:
+      - with-qdrant  # Enable with: docker-compose --profile with-qdrant up
+    labels:
+      - "com.example.description=Qdrant Vector Store (Optional)"
+
+  # Redis Cache (optional - for distributed caching)
+  redis:
+    image: redis:7-alpine
+    container_name: socratic-rag-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    networks:
+      - rag-network
+    profiles:
+      - with-redis  # Enable with: docker-compose --profile with-redis up
+    labels:
+      - "com.example.description=Redis Cache (Optional)"
+
+  # Prometheus Metrics (optional - for monitoring)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: socratic-rag-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    restart: unless-stopped
+    networks:
+      - rag-network
+    profiles:
+      - with-monitoring  # Enable with: docker-compose --profile with-monitoring up
+    labels:
+      - "com.example.description=Prometheus Metrics (Optional)"
+
+volumes:
+  chromadb_data:
+    driver: local
+  qdrant_data:
+    driver: local
+  redis_data:
+    driver: local
+  prometheus_data:
+    driver: local
+
+networks:
+  rag-network:
+    driver: bridge
+
+# Usage Examples:
+#
+# 1. Basic setup (RAG API + ChromaDB only):
+#    docker-compose up -d
+#
+# 2. With Qdrant:
+#    docker-compose --profile with-qdrant up -d
+#
+# 3. With Redis caching:
+#    docker-compose --profile with-redis up -d
+#
+# 4. Full monitoring stack:
+#    docker-compose --profile with-qdrant --profile with-redis --profile with-monitoring up -d
+#
+# 5. All services:
+#    docker-compose --profile '*' up -d
+#
+# 6. View logs:
+#    docker-compose logs -f rag-api
+#
+# 7. Stop services:
+#    docker-compose down
+#
+# 8. Remove volumes (cleanup):
+#    docker-compose down -v
+#
+# API Access:
+#   - REST API: http://localhost:8000
+#   - API Docs: http://localhost:8000/docs
+#   - ChromaDB: http://localhost:8001
+#   - Qdrant: http://localhost:6333 (if enabled)
+#   - Redis: localhost:6379 (if enabled)
+#   - Prometheus: http://localhost:9090 (if enabled)
