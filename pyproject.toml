@@ -114,6 +114,8 @@ module = [
     "PyPDF2",
     "faiss",
     "langchain.*",
+    "torch",
+    "torch.*",
 ]
 ignore_missing_imports = true
 
