@@ -1,0 +1,16 @@
+# GitHub issue template configuration
+# https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-template-selection
+
+blank_issues_enabled: true
+contact_links:
+  - name: 🤔 Questions & Support
+    url: https://github.com/Nireus79/Socratic-rag/discussions
+    about: Ask questions, share ideas, and get support in our Discussions board
+
+  - name: 📚 Documentation
+    url: https://github.com/Nireus79/Socratic-rag/blob/main/README.md
+    about: Check out our comprehensive documentation, guides, and examples
+
+  - name: 💬 GitHub Discussions
+    url: https://github.com/Nireus79/Socratic-rag/discussions/categories/q-a
+    about: Join our community Q&A section for discussions and help

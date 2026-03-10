@@ -353,6 +353,48 @@ If you use Socratic RAG in your research, please cite:
 - Re-ranking with cross-encoders
 - Multi-language support
 
+## Documentation
+
+### Getting Started
+- **[Quickstart Guide](docs/quickstart.md)** - 5-minute introduction
+- **[Contributing Tutorial](docs/CONTRIBUTING_TUTORIAL.md)** - Step-by-step guide for first-time contributors
+
+### Guides & References
+- **[API Reference](docs/api-reference.md)** - Complete API documentation
+- **[Vector Stores Guide](docs/vector-stores.md)** - Compare and select vector stores
+- **[Embeddings Guide](docs/embeddings.md)** - Embedding models and providers
+- **[Integrations Guide](docs/integrations.md)** - Framework integration guides
+- **[Architecture Overview](docs/ARCHITECTURE_DIAGRAMS.md)** - System design and diagrams
+- **[Architecture Deep Dive](ARCHITECTURE.md)** - Technical architecture details
+
+### Operations & Deployment
+- **[Deployment Guide](DEPLOYMENT_GUIDE.md)** - Local, Docker, production, Kubernetes, AWS, GCP
+- **[Kubernetes Setup](kubernetes/README.md)** - Kubernetes manifests and deployment
+- **[Docker Setup](examples/07_docker_containerization.py)** - Docker containerization examples
+- **[Performance Guide](PERFORMANCE_BENCHMARKING.md)** - Benchmarks, optimization, scaling
+- **[Troubleshooting](TROUBLESHOOTING.md)** - Common issues and solutions
+
+### Community & Project
+- **[FAQ](FAQ.md)** - 50+ frequently asked questions
+- **[Code of Conduct](CODE_OF_CONDUCT.md)** - Community guidelines
+- **[Security Policy](SECURITY.md)** - Vulnerability reporting and best practices
+- **[ROADMAP](ROADMAP.md)** - Future plans for v0.2.0, v0.3.0, v1.0.0
+- **[CONTRIBUTING](CONTRIBUTING.md)** - Contribution guidelines
+
+### Examples
+All examples are in the `examples/` directory:
+1. `01_basic_rag.py` - Basic RAG workflow
+2. `02_multi_vector_stores.py` - Vector store comparison
+3. `03_openclaw_integration.py` - Openclaw skill integration
+4. `04_langchain_integration.py` - LangChain integration
+5. `05_llm_powered_rag.py` - LLM-powered answers
+6. `06_rest_api.py` - REST API with FastAPI
+7. `07_docker_containerization.py` - Docker setup guide
+8. `08_deployment_patterns.py` - Deployment strategies
+9. `09_advanced_rag_patterns.py` - Multi-agent RAG, conversation context
+10. `10_streaming_rag.py` - Streaming responses
+11. `11_real_time_updates.py` - Real-time knowledge base updates
+
 ## Support
 
 For issues, questions, or suggestions:
