@@ -45,9 +45,7 @@ class Document:
     document_id: str
     source: str
     metadata: Dict[str, Any] = field(default_factory=dict)
-    created_at: datetime = field(
-        default_factory=lambda: datetime.now(timezone.utc)
-    )
+    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
 
     @classmethod
     def create(
