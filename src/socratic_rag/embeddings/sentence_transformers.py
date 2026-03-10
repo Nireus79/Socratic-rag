@@ -28,7 +28,10 @@ class SentenceTransformersEmbedder(BaseEmbedder):
 
             self.model = SentenceTransformer(model_name)
             self.model_name = model_name
-            self._dimension = self.model.get_sentence_embedding_dimension()
+            dim = self.model.get_sentence_embedding_dimension()
+            if dim is None:
+                raise EmbeddingError("Failed to get sentence embedding dimension")
+            self._dimension = int(dim)
         except ImportError:
             raise EmbeddingError(
                 "sentence-transformers is required for SentenceTransformersEmbedder. "
@@ -73,7 +76,8 @@ class SentenceTransformersEmbedder(BaseEmbedder):
             if not texts:
                 raise EmbeddingError("Cannot embed empty list of texts")
             embeddings = self.model.encode(texts, convert_to_tensor=False)
-            return embeddings.tolist()
+            result = embeddings.tolist()
+            return result  # type: ignore[no-any-return]
         except Exception as e:
             raise EmbeddingError(f"Failed to embed batch: {e}")
 

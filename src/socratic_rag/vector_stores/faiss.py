@@ -175,6 +175,10 @@ class FAISSVectorStore(BaseVectorStore):
                 self._load_index(vector_size)
                 self._load_metadata()
 
+            # Index should be created now
+            if self.index is None:
+                raise VectorStoreError("Failed to create or load FAISS index")
+
             # Convert embeddings to numpy array (FAISS expects float32)
             embeddings_array = self.np.array(embeddings, dtype=self.np.float32)
 

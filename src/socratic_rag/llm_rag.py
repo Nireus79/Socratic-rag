@@ -1,9 +1,10 @@
 """LLM-powered RAG client using Socrates Nexus integration."""
 
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from .client import RAGClient
 from .exceptions import SocraticRAGError
+from .models import SearchResult
 
 
 class LLMPoweredRAG:
@@ -114,7 +115,7 @@ class LLMPoweredRAG:
         query: str,
         top_k: Optional[int] = None,
         filters: Optional[Dict[str, Any]] = None,
-    ) -> list:
+    ) -> List[SearchResult]:
         """Search for documents.
 
         Args:

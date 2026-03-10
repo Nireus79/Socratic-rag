@@ -105,7 +105,7 @@ class ChromaDBVectorStore(BaseVectorStore):
                 ids=ids,
                 embeddings=embeddings,
                 documents=texts,
-                metadatas=metadatas,
+                metadatas=metadatas,  # type: ignore[arg-type]
             )
 
             return ids
@@ -149,10 +149,16 @@ class ChromaDBVectorStore(BaseVectorStore):
             if not results["ids"] or not results["ids"][0]:
                 return search_results
 
-            for i, chunk_id in enumerate(results["ids"][0]):
-                text = results["documents"][0][i]
-                distance = results["distances"][0][i]
-                metadata = results["metadatas"][0][i]
+            # Type narrowing for ChromaDB results
+            ids_list = results["ids"][0]
+            documents_list = results["documents"][0] if results["documents"] else []
+            distances_list = results["distances"][0] if results["distances"] else []
+            metadatas_list = results["metadatas"][0] if results["metadatas"] else []
+
+            for i, chunk_id in enumerate(ids_list):
+                text = str(documents_list[i]) if i < len(documents_list) else ""
+                distance = float(distances_list[i]) if i < len(distances_list) else 0.0
+                metadata = metadatas_list[i] if i < len(metadatas_list) else {}
 
                 # Convert distance to similarity score
                 # ChromaDB returns distances, convert to similarity (0-1)
@@ -161,11 +167,11 @@ class ChromaDBVectorStore(BaseVectorStore):
                 # Reconstruct chunk
                 chunk = Chunk(
                     text=text,
-                    chunk_id=chunk_id,
-                    document_id=metadata["document_id"],
-                    metadata=json.loads(metadata["chunk_metadata"]),
-                    start_char=int(metadata["start_char"]),
-                    end_char=int(metadata["end_char"]),
+                    chunk_id=str(chunk_id),
+                    document_id=str(metadata.get("document_id", "unknown")),
+                    metadata=json.loads(str(metadata.get("chunk_metadata", "{}"))),
+                    start_char=int(str(metadata.get("start_char", "0"))),
+                    end_char=int(str(metadata.get("end_char", "0"))),
                 )
 
                 search_results.append(SearchResult(chunk=chunk, score=score))
@@ -217,14 +223,23 @@ class ChromaDBVectorStore(BaseVectorStore):
             if not result["ids"] or not result["ids"]:
                 return None
 
-            metadata = result["metadatas"][0]
+            # Type narrowing for ChromaDB results
+            documents_list = result["documents"] if result["documents"] else []
+            metadatas_list = result["metadatas"] if result["metadatas"] else []
+
+            if not documents_list or not metadatas_list:
+                return None
+
+            text = str(documents_list[0])
+            metadata = metadatas_list[0]
+
             return Chunk(
-                text=result["documents"][0],
+                text=text,
                 chunk_id=document_id,
-                document_id=metadata["document_id"],
-                metadata=json.loads(metadata["chunk_metadata"]),
-                start_char=int(metadata["start_char"]),
-                end_char=int(metadata["end_char"]),
+                document_id=str(metadata.get("document_id", "unknown")),
+                metadata=json.loads(str(metadata.get("chunk_metadata", "{}"))),
+                start_char=int(str(metadata.get("start_char", "0"))),
+                end_char=int(str(metadata.get("end_char", "0"))),
             )
 
         except Exception as e:
