@@ -16,6 +16,24 @@ Production-grade Retrieval-Augmented Generation (RAG) package for Python.
 - **Framework Integrations**: Openclaw skills and LangChain components
 - **Async Support**: Full async/await interface for non-blocking operations
 - **Production Ready**: 70%+ test coverage, type hints, comprehensive documentation
+- **Part of Socrates Ecosystem**: Built on Socrates Nexus for LLM integration
+
+## Part of the Socrates Ecosystem
+
+**Socratic RAG** is a core component of the [Socrates Ecosystem](https://github.com/Nireus79/Socrates-nexus/blob/main/ECOSYSTEM.md) - a collection of production-grade AI packages that work together.
+
+### How It Uses Socrates Nexus
+- Embedded document generation uses Socrates Nexus for embeddings
+- Answer generation uses Socrates Nexus for LLM calls (multi-provider support)
+- Works with any Socrates Nexus provider (Claude, GPT-4, Gemini, Ollama)
+
+### Related Packages in the Ecosystem
+- **[Socrates Nexus](https://github.com/Nireus79/Socrates-nexus)** (Dependency) - Universal LLM client
+- **[Socratic Analyzer](https://github.com/Nireus79/Socratic-analyzer)** - Code analysis (also uses Socrates Nexus)
+- **[Socratic Agents](https://github.com/Nireus79/Socratic-agents)** (Coming Q4 2026) - Multi-agent orchestration
+- **[Socratic Knowledge](https://github.com/Nireus79/Socratic-knowledge)** (Coming Q1 2027) - Enterprise knowledge management
+
+👉 **Full ecosystem guide**: See [Socrates Nexus ECOSYSTEM.md](https://github.com/Nireus79/Socrates-nexus/blob/main/ECOSYSTEM.md)
 
 ## Installation
 
