@@ -2,6 +2,7 @@
 
 from .client import RAGClient
 from .async_client import AsyncRAGClient
+from .llm_rag import LLMPoweredRAG
 from .models import Chunk, Document, RAGConfig, SearchResult
 from .exceptions import (
     AsyncRAGError,
@@ -24,6 +25,7 @@ __version__ = "0.1.0"
 __all__ = [
     "RAGClient",
     "AsyncRAGClient",
+    "LLMPoweredRAG",
     "Chunk",
     "Document",
     "RAGConfig",
