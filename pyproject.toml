@@ -1,0 +1,107 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "socratic-rag"
+version = "0.1.0"
+description = "Production-grade Retrieval-Augmented Generation package"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Socratic RAG", email = "info@socratic-rag.dev"}
+]
+keywords = ["rag", "retrieval-augmented-generation", "nlp", "embeddings", "vector-database"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "numpy>=1.20.0",
+    "sentence-transformers>=2.0.0",
+]
+
+[project.optional-dependencies]
+chromadb = ["chromadb>=0.4.0"]
+qdrant = ["qdrant-client>=1.0.0"]
+faiss = ["faiss-cpu>=1.7.0"]
+pinecone = ["pinecone-client>=2.0.0"]
+pdf = ["PyPDF2>=3.0.0"]
+markdown = ["markdown>=3.0.0"]
+openclaw = []
+langchain = ["langchain>=0.1.0"]
+nexus = ["socrates-nexus>=0.3.0"]
+
+all = [
+    "chromadb>=0.4.0",
+    "qdrant-client>=1.0.0",
+    "faiss-cpu>=1.7.0",
+    "PyPDF2>=3.0.0",
+    "markdown>=3.0.0",
+    "langchain>=0.1.0",
+    "socrates-nexus>=0.3.0",
+]
+
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Nireus79/Socratic-rag"
+Documentation = "https://github.com/Nireus79/Socratic-rag/tree/main/docs"
+Repository = "https://github.com/Nireus79/Socratic-rag.git"
+Issues = "https://github.com/Nireus79/Socratic-rag/issues"
+
+[tool.setuptools]
+packages = ["socratic_rag"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.black]
+line-length = 100
+target-version = ["py38"]
+include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+select = ["E", "F", "W", "I"]
+
+[tool.mypy]
+python_version = "3.8"
+strict = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "--cov=src/socratic_rag --cov-report=term-missing --cov-report=html -v"
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "slow: Slow tests",
+]
+asyncio_mode = "auto"
