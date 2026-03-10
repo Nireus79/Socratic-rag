@@ -1,7 +1,8 @@
 """Tests for LLM-powered RAG."""
 
 import pytest
-from socratic_rag import RAGClient, RAGConfig, LLMPoweredRAG
+
+from socratic_rag import LLMPoweredRAG, RAGClient, RAGConfig
 from socratic_rag.exceptions import SocraticRAGError
 
 
@@ -112,7 +113,7 @@ class TestLLMPoweredRAG:
         llm_rag.add_document("Content 1", "test1.txt")
         llm_rag.add_document("Content 2", "test2.txt")
 
-        answer = llm_rag.generate_answer(
+        _ = llm_rag.generate_answer(
             "test",
             context_prefix="Documents:\n",
             context_separator=" | ",

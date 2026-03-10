@@ -1,9 +1,10 @@
 """Tests for integrations."""
 
 import pytest
+
 from socratic_rag import RAGClient, RAGConfig
-from socratic_rag.integrations.openclaw import SocraticRAGSkill
 from socratic_rag.integrations.langchain import SocraticRAGRetriever
+from socratic_rag.integrations.openclaw import SocraticRAGSkill
 
 
 class TestOpenclaw:

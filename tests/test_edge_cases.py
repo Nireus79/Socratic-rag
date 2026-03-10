@@ -1,9 +1,9 @@
 """Edge case tests for Socratic RAG."""
 
 import pytest
+
 from socratic_rag import RAGClient, RAGConfig
-from socratic_rag.models import Document, Chunk
-from socratic_rag.exceptions import ChunkingError, EmbeddingError, VectorStoreError
+from socratic_rag.exceptions import EmbeddingError, VectorStoreError
 
 
 class TestEdgeCases:

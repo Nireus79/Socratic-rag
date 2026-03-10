@@ -1,10 +1,11 @@
 """Qdrant vector store provider."""
 
-from typing import Any, Dict, List, Optional
 import json
-from .base import BaseVectorStore
-from ..models import Chunk, SearchResult
+from typing import Any, Dict, List, Optional
+
 from ..exceptions import VectorStoreError
+from ..models import Chunk, SearchResult
+from .base import BaseVectorStore
 
 
 class QdrantVectorStore(BaseVectorStore):

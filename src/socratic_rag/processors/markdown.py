@@ -1,10 +1,11 @@
 """Markdown file processor."""
 
-from typing import List
 from pathlib import Path
-from .base import BaseDocumentProcessor
-from ..models import Document
+from typing import List
+
 from ..exceptions import ProcessorError
+from ..models import Document
+from .base import BaseDocumentProcessor
 
 
 class MarkdownProcessor(BaseDocumentProcessor):
@@ -35,7 +36,7 @@ class MarkdownProcessor(BaseDocumentProcessor):
                 raise ProcessorError(f"Not a file: {file_path}")
 
             # Read file content
-            with open(path, "r", encoding="utf-8") as f:
+            with open(path, encoding="utf-8") as f:
                 content = f.read()
 
             if not content.strip():

@@ -2,9 +2,11 @@
 
 import tempfile
 from pathlib import Path
+
 import pytest
-from socratic_rag.processors import TextProcessor, MarkdownProcessor, PDFProcessor
+
 from socratic_rag.exceptions import ProcessorError
+from socratic_rag.processors import MarkdownProcessor, TextProcessor
 
 
 class TestTextProcessor:

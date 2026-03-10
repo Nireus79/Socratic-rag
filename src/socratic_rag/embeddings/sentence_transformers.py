@@ -1,8 +1,9 @@
 """Sentence Transformers embedding provider."""
 
 from typing import List
-from .base import BaseEmbedder
+
 from ..exceptions import EmbeddingError
+from .base import BaseEmbedder
 
 
 class SentenceTransformersEmbedder(BaseEmbedder):

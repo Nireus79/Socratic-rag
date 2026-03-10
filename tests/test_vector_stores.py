@@ -1,9 +1,10 @@
 """Tests for vector store providers."""
 
 import pytest
-from socratic_rag.vector_stores import ChromaDBVectorStore
-from socratic_rag.models import Chunk
+
 from socratic_rag.exceptions import VectorStoreError
+from socratic_rag.models import Chunk
+from socratic_rag.vector_stores import ChromaDBVectorStore
 
 
 @pytest.mark.unit

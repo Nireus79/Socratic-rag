@@ -1,9 +1,10 @@
 """Fixed-size chunking strategy."""
 
 from typing import Any, Dict, List, Optional
-from .base import BaseChunker
-from ..models import Chunk
+
 from ..exceptions import ChunkingError
+from ..models import Chunk
+from .base import BaseChunker
 
 
 class FixedSizeChunker(BaseChunker):

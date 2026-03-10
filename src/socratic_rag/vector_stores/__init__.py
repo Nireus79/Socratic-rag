@@ -2,8 +2,8 @@
 
 from .base import BaseVectorStore
 from .chromadb import ChromaDBVectorStore
-from .qdrant import QdrantVectorStore
 from .faiss import FAISSVectorStore
+from .qdrant import QdrantVectorStore
 
 __all__ = [
     "BaseVectorStore",

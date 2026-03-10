@@ -1,9 +1,9 @@
 """Socratic RAG - Production-grade Retrieval-Augmented Generation."""
 
-from .client import RAGClient
 from .async_client import AsyncRAGClient
-from .llm_rag import LLMPoweredRAG
-from .models import Chunk, Document, RAGConfig, SearchResult
+from .chunking import BaseChunker, FixedSizeChunker
+from .client import RAGClient
+from .embeddings import BaseEmbedder, SentenceTransformersEmbedder
 from .exceptions import (
     AsyncRAGError,
     ChunkingError,
@@ -16,9 +16,9 @@ from .exceptions import (
     SocraticRAGError,
     VectorStoreError,
 )
-from .embeddings import BaseEmbedder, SentenceTransformersEmbedder
-from .chunking import BaseChunker, FixedSizeChunker
-from .vector_stores import BaseVectorStore, ChromaDBVectorStore, QdrantVectorStore, FAISSVectorStore
+from .llm_rag import LLMPoweredRAG
+from .models import Chunk, Document, RAGConfig, SearchResult
+from .vector_stores import BaseVectorStore, ChromaDBVectorStore, FAISSVectorStore, QdrantVectorStore
 
 __version__ = "0.1.0"
 

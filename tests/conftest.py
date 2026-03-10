@@ -2,7 +2,9 @@
 
 import tempfile
 from pathlib import Path
+
 import pytest
+
 from socratic_rag import RAGClient, RAGConfig
 
 
@@ -33,10 +35,11 @@ def rag_client():
 def sample_text():
     """Provide sample text for testing."""
     return """
-    Python is a high-level, interpreted programming language known for its simplicity and readability.
-    It was created by Guido van Rossum and first released in 1991.
-    Python is widely used in web development, data science, artificial intelligence, and automation.
-    The language emphasizes code readability and uses indentation to define code blocks.
+    Python is a high-level, interpreted programming language known for
+    its simplicity and readability. It was created by Guido van Rossum
+    and first released in 1991. Python is widely used in web development,
+    data science, artificial intelligence, and automation. The language
+    emphasizes code readability and uses indentation to define code blocks.
     """
 
 

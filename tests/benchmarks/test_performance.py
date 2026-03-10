@@ -1,7 +1,9 @@
 """Performance benchmarks for Socratic RAG."""
 
-import pytest
 import time
+
+import pytest
+
 from socratic_rag import RAGClient, RAGConfig
 
 
@@ -26,7 +28,7 @@ class TestPerformanceBenchmarks:
             for content, source in documents:
                 client.add_document(content, source)
 
-        result = benchmark(add_all)
+        _ = benchmark(add_all)
         client.clear()
 
     @pytest.mark.slow
@@ -42,7 +44,7 @@ class TestPerformanceBenchmarks:
         def search():
             return client.search("Python machine learning", top_k=5)
 
-        result = benchmark(search)
+        _ = benchmark(search)
         client.clear()
 
     @pytest.mark.slow
@@ -58,7 +60,7 @@ class TestPerformanceBenchmarks:
         def retrieve():
             return client.retrieve_context("test query", top_k=5)
 
-        result = benchmark(retrieve)
+        _ = benchmark(retrieve)
         client.clear()
 
     @pytest.mark.slow
@@ -75,7 +77,7 @@ class TestPerformanceBenchmarks:
         results = client.search("word", top_k=5)
         search_time = time.time() - start
 
-        print(f"\nLarge document benchmark:")
+        print("\nLarge document benchmark:")
         print(f"  Add time: {add_time:.3f}s")
         print(f"  Search time: {search_time:.3f}s")
         print(f"  Results found: {len(results)}")
@@ -124,8 +126,8 @@ class TestPerformanceBenchmarks:
         doc_id = client.add_document(content, "large.txt")
         elapsed = time.time() - start
 
-        print(f"\nChunking benchmark:")
-        print(f"  Content size: ~500KB")
+        print("\nChunking benchmark:")
+        print("  Content size: ~500KB")
         print(f"  Processing time: {elapsed:.3f}s")
 
         assert doc_id is not None
@@ -150,7 +152,7 @@ class TestPerformanceBenchmarks:
         embs = embedder.embed_batch(texts)
         batch_time = time.time() - start
 
-        print(f"\nEmbedding benchmark:")
+        print("\nEmbedding benchmark:")
         print(f"  Single text time: {single_time*1000:.1f}ms")
         print(f"  Batch (10) time: {batch_time*1000:.1f}ms")
         print(f"  Per doc in batch: {batch_time/10*1000:.1f}ms")
@@ -181,7 +183,7 @@ class TestMemoryUsage:
             )
 
         # Note: Actual memory measurement would require psutil or similar
-        print(f"\nMemory characteristics:")
+        print("\nMemory characteristics:")
         print(f"  Documents added: {num_docs}")
         print(f"  Vector dimension: {client.embedder.dimension}")
         print(f"  Expected memory: ~{num_docs * client.embedder.dimension * 4 / (1024**2):.1f}MB")
@@ -218,6 +220,6 @@ class TestScalability:
             results[num_docs] = search_time
             client.clear()
 
-        print(f"\nSearch scaling:")
+        print("\nSearch scaling:")
         for docs, time_taken in sorted(results.items()):
             print(f"  {docs:3d} docs: {time_taken*1000:6.1f}ms")

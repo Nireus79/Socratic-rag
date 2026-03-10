@@ -1,7 +1,6 @@
 """Integrations with external frameworks."""
 
-from . import openclaw
-from . import langchain
+from . import langchain, openclaw
 
 __all__ = [
     "openclaw",

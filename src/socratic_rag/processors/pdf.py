@@ -1,10 +1,11 @@
 """PDF file processor."""
 
-from typing import List
 from pathlib import Path
-from .base import BaseDocumentProcessor
-from ..models import Document
+from typing import List
+
 from ..exceptions import ProcessorError
+from ..models import Document
+from .base import BaseDocumentProcessor
 
 
 class PDFProcessor(BaseDocumentProcessor):

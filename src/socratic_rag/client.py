@@ -1,16 +1,17 @@
 """Main RAG client interface."""
 
 from typing import Any, Dict, List, Optional
-from .models import Document, RAGConfig, SearchResult
-from .embeddings.base import BaseEmbedder
-from .embeddings.sentence_transformers import SentenceTransformersEmbedder
+
 from .chunking.base import BaseChunker
 from .chunking.fixed_size import FixedSizeChunker
+from .embeddings.base import BaseEmbedder
+from .embeddings.sentence_transformers import SentenceTransformersEmbedder
+from .exceptions import ProviderNotFoundError
+from .models import Document, RAGConfig, SearchResult
 from .vector_stores.base import BaseVectorStore
 from .vector_stores.chromadb import ChromaDBVectorStore
-from .vector_stores.qdrant import QdrantVectorStore
 from .vector_stores.faiss import FAISSVectorStore
-from .exceptions import ConfigurationError, ProviderNotFoundError
+from .vector_stores.qdrant import QdrantVectorStore
 
 
 class RAGClient:

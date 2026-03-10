@@ -1,12 +1,12 @@
 """FAISS vector store provider."""
 
-from typing import Any, Dict, List, Optional
-import json
 import pickle
 from pathlib import Path
-from .base import BaseVectorStore
-from ..models import Chunk, SearchResult
+from typing import Any, Dict, List, Optional
+
 from ..exceptions import VectorStoreError
+from ..models import Chunk, SearchResult
+from .base import BaseVectorStore
 
 
 class FAISSVectorStore(BaseVectorStore):

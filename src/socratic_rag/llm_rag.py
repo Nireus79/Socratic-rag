@@ -1,6 +1,7 @@
 """LLM-powered RAG client using Socrates Nexus integration."""
 
-from typing import Optional, Any, Dict
+from typing import Any, Dict, Optional
+
 from .client import RAGClient
 from .exceptions import SocraticRAGError
 

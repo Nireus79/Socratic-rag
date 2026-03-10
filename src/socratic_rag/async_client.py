@@ -2,8 +2,9 @@
 
 import asyncio
 from typing import Any, Dict, List, Optional
-from .models import Document, RAGConfig, SearchResult
+
 from .client import RAGClient
+from .models import RAGConfig, SearchResult
 
 
 class AsyncRAGClient:

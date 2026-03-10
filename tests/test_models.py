@@ -1,7 +1,9 @@
 """Tests for data models."""
 
-import pytest
 from datetime import datetime
+
+import pytest
+
 from socratic_rag.models import Chunk, Document, RAGConfig, SearchResult
 
 

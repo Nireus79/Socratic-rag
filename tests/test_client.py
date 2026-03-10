@@ -1,7 +1,8 @@
 """Tests for RAG client."""
 
 import pytest
-from socratic_rag import RAGClient, RAGConfig, AsyncRAGClient
+
+from socratic_rag import AsyncRAGClient, RAGClient, RAGConfig
 from socratic_rag.exceptions import ProviderNotFoundError
 
 

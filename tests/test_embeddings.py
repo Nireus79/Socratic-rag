@@ -1,6 +1,7 @@
 """Tests for embedding providers."""
 
 import pytest
+
 from socratic_rag.embeddings import SentenceTransformersEmbedder
 from socratic_rag.exceptions import EmbeddingError
 

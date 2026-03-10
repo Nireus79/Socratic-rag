@@ -1,6 +1,7 @@
 """LangChain retriever integration."""
 
-from typing import List, Any
+from typing import Any, List
+
 from ...client import RAGClient
 
 

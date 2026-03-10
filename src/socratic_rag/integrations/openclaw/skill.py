@@ -1,6 +1,7 @@
 """Openclaw RAG skill integration."""
 
 from typing import Any, Dict, List, Optional
+
 from ...client import RAGClient
 from ...models import RAGConfig
 

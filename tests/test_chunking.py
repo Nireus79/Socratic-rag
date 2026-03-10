@@ -1,6 +1,7 @@
 """Tests for chunking strategies."""
 
 import pytest
+
 from socratic_rag.chunking import FixedSizeChunker
 from socratic_rag.exceptions import ChunkingError
 
@@ -32,10 +33,9 @@ class TestFixedSizeChunker:
 
         if len(chunks) > 1:
             # Check for overlap between consecutive chunks
-            chunk1_end = chunks[0].text[-10:]
-            chunk2_start = chunks[1].text[:10]
-            # There should be some overlap
+            # There should be some overlap in the text
             assert len(chunks[0].text) <= 50
+            assert len(chunks[1].text) <= 50
 
     def test_chunk_ids(self):
         """Test that chunks have unique IDs."""
