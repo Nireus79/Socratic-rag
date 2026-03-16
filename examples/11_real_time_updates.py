@@ -12,7 +12,7 @@ Run with:
 """
 
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Dict, Optional, Callable, Set
 from enum import Enum
 import asyncio
@@ -100,7 +100,7 @@ class VersionedRAGClient:
         # Record update
         update = Update(
             update_type=UpdateType.DOCUMENT_ADDED,
-            timestamp=datetime.utcnow(),
+            timestamp=datetime.now(timezone.utc),
             document_id=doc_id,
             content=content,
             source=source
@@ -125,7 +125,7 @@ class VersionedRAGClient:
             # Record update
             update = Update(
                 update_type=UpdateType.DOCUMENT_REMOVED,
-                timestamp=datetime.utcnow(),
+                timestamp=datetime.now(timezone.utc),
                 document_id=doc_id
             )
             self.update_history.append(update)
@@ -148,7 +148,7 @@ class VersionedRAGClient:
         # Single batch update notification
         update = Update(
             update_type=UpdateType.BATCH_ADDED,
-            timestamp=datetime.utcnow(),
+            timestamp=datetime.now(timezone.utc),
             document_id="batch",
             metadata={"count": len(doc_ids), "ids": doc_ids}
         )
@@ -187,7 +187,7 @@ class VersionedRAGClient:
         self.version += 1
         update = Update(
             update_type=UpdateType.CLEARED,
-            timestamp=datetime.utcnow(),
+            timestamp=datetime.now(timezone.utc),
             document_id="all"
         )
         self.update_history.append(update)
