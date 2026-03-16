@@ -5,6 +5,16 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Test Coverage](https://img.shields.io/badge/coverage-70%25-brightgreen.svg)](https://github.com/Nireus79/Socratic-rag)
 
+## Why Socratic RAG?
+
+Building reliable retrieval systems is complex. Socratic RAG provides production-grade RAG:
+
+- **Multiple Vector Stores** - ChromaDB, Qdrant, FAISS, Pinecone with extensible provider pattern
+- **Flexible Embeddings** - Sentence Transformers or OpenAI embeddings via Socrates Nexus
+- **Smart Chunking** - Fixed-size, semantic, and recursive strategies for optimal chunk processing
+- **Document Processing** - Handle Text, PDF, Markdown, and code files out of the box
+- **Async Support** - Full async/await interface for non-blocking operations at scale
+
 Production-grade Retrieval-Augmented Generation (RAG) package for Python.
 
 ## Features
