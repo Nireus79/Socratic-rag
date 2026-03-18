@@ -301,6 +301,10 @@ qa = RetrievalQA.from_chain_type(llm=llm, retriever=retriever)
 answer = qa.run("What is Python?")
 ```
 
+## Documentation
+
+- **[Caching Strategy Guide](docs/CACHING_STRATEGY.md)** - Complete guide to performance optimization with embedding caching and search result caching, including configuration, memory management, and best practices
+
 ## API Reference
 
 ### RAGClient
