@@ -73,7 +73,9 @@ class SearchResultCache:
             keys_to_delete = [k for k in self._cache.keys() if project_id in k]
             for key in keys_to_delete:
                 del self._cache[key]
-            logger.debug(f"Invalidated {len(keys_to_delete)} cache entries for project: {project_id}")
+            logger.debug(
+                f"Invalidated {len(keys_to_delete)} cache entries for project: {project_id}"
+            )
 
     def stats(self) -> Dict[str, any]:
         """Get cache statistics."""
