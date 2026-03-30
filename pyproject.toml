@@ -39,7 +39,7 @@ pdf = ["PyPDF2>=3.0.0"]
 markdown = ["markdown>=3.0.0"]
 openclaw = []
 langchain = ["langchain>=0.1.0"]
-nexus = ["socrates-nexus>=0.3.0"]
+nexus = ["socrates-nexus>=0.3.1"]
 
 all = [
     "chromadb>=0.4.0",
@@ -48,7 +48,7 @@ all = [
     "PyPDF2>=3.0.0",
     "markdown>=3.0.0",
     "langchain>=0.1.0",
-    "socrates-nexus>=0.3.0",
+    "socrates-nexus>=0.3.1",
 ]
 
 dev = [
