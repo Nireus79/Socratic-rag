@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "socratic-rag"
-version = "0.1.0"
+version = "0.1.1"
 description = "Production-grade Retrieval-Augmented Generation package"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -70,10 +70,10 @@ Repository = "https://github.com/Nireus79/Socratic-rag.git"
 Issues = "https://github.com/Nireus79/Socratic-rag/issues"
 
 [tool.setuptools]
-packages = ["socratic_rag"]
+package-dir = {"" = "src"}
 
-[tool.setuptools.package-dir]
-"" = "src"
+[tool.setuptools.packages]
+find = {where = ["src"]}
 
 [tool.black]
 line-length = 100
