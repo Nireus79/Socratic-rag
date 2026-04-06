@@ -1,9 +1,12 @@
 """Sentence Transformers embedding provider."""
 
+import logging
 from typing import List
 
 from ..exceptions import EmbeddingError
 from .base import BaseEmbedder
+
+logger = logging.getLogger(__name__)
 
 
 class SentenceTransformersEmbedder(BaseEmbedder):
@@ -32,12 +35,14 @@ class SentenceTransformersEmbedder(BaseEmbedder):
             if dim is None:
                 raise EmbeddingError("Failed to get sentence embedding dimension")
             self._dimension = int(dim)
-        except ImportError:
+        except ImportError as e:
+            logger.error(f"sentence-transformers not installed: {e}")
             raise EmbeddingError(
                 "sentence-transformers is required for SentenceTransformersEmbedder. "
                 "Install with: pip install sentence-transformers"
             )
         except Exception as e:
+            logger.error(f"Failed to initialize SentenceTransformersEmbedder: {e}", exc_info=True)
             raise EmbeddingError(f"Failed to initialize SentenceTransformersEmbedder: {e}")
 
     def embed_text(self, text: str) -> List[float]:
@@ -57,7 +62,10 @@ class SentenceTransformersEmbedder(BaseEmbedder):
                 raise EmbeddingError("Cannot embed empty text")
             embedding = self.model.encode(text, convert_to_tensor=False)
             return embedding.tolist()
+        except EmbeddingError:
+            raise
         except Exception as e:
+            logger.error(f"Failed to embed text: {e}", exc_info=True)
             raise EmbeddingError(f"Failed to embed text: {e}")
 
     def embed_batch(self, texts: List[str]) -> List[List[float]]:
@@ -78,7 +86,10 @@ class SentenceTransformersEmbedder(BaseEmbedder):
             embeddings = self.model.encode(texts, convert_to_tensor=False)
             result = embeddings.tolist()
             return result  # type: ignore[no-any-return]
+        except EmbeddingError:
+            raise
         except Exception as e:
+            logger.error(f"Failed to embed batch: {e}", exc_info=True)
             raise EmbeddingError(f"Failed to embed batch: {e}")
 
     @property
