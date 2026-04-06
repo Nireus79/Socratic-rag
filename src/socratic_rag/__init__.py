@@ -1,7 +1,7 @@
 """Socratic RAG - Production-grade Retrieval-Augmented Generation."""
 
 from .async_client import AsyncRAGClient
-from .chunking import BaseChunker, FixedSizeChunker
+from .chunking import BaseChunker, FixedSizeChunker, SemanticChunker, SlidingWindowChunker
 from .client import RAGClient
 from .embeddings import BaseEmbedder, SentenceTransformersEmbedder
 from .exceptions import (
@@ -44,6 +44,8 @@ __all__ = [
     "SentenceTransformersEmbedder",
     "BaseChunker",
     "FixedSizeChunker",
+    "SemanticChunker",
+    "SlidingWindowChunker",
     "BaseVectorStore",
     "ChromaDBVectorStore",
     "QdrantVectorStore",
