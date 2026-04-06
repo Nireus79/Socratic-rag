@@ -1,3 +1,7 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
 """Fixed-size chunking strategy."""
 
 from typing import Any, Dict, List, Optional

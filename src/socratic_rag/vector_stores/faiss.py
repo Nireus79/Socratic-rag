@@ -1,3 +1,7 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
 """FAISS vector store provider."""
 
 import pickle

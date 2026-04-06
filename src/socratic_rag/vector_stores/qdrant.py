@@ -1,3 +1,7 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
 """Qdrant vector store provider."""
 
 import json
