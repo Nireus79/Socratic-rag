@@ -3,6 +3,7 @@
 from .async_client import AsyncRAGClient
 from .chunking import BaseChunker, FixedSizeChunker, SemanticChunker, SlidingWindowChunker
 from .client import RAGClient
+from .deduplication import DeduplicateResult, DocumentDeduplicator, DuplicateGroup
 from .embeddings import BaseEmbedder, SentenceTransformersEmbedder
 from .exceptions import (
     AsyncRAGError,
@@ -50,4 +51,8 @@ __all__ = [
     "ChromaDBVectorStore",
     "QdrantVectorStore",
     "FAISSVectorStore",
+    # Deduplication
+    "DocumentDeduplicator",
+    "DeduplicateResult",
+    "DuplicateGroup",
 ]
