@@ -1,11 +1,14 @@
 """PDF file processor."""
 
+import logging
 from pathlib import Path
 from typing import List
 
 from ..exceptions import ProcessorError
 from ..models import Document
 from .base import BaseDocumentProcessor
+
+logger = logging.getLogger(__name__)
 
 
 class PDFProcessor(BaseDocumentProcessor):
@@ -54,7 +57,8 @@ class PDFProcessor(BaseDocumentProcessor):
                         if text:
                             full_text += f"\n--- Page {page_num} ---\n{text}"
                     except Exception as e:
-                        ProcessorError(f"Failed to extract text from page {page_num}: {e}")
+                        logger.warning(f"Failed to extract text from page {page_num}: {e}", exc_info=True)
+                        # Continue with next page if one page fails
 
             if not full_text.strip():
                 raise ProcessorError(f"Could not extract text from PDF: {file_path}")
@@ -75,9 +79,11 @@ class PDFProcessor(BaseDocumentProcessor):
 
         except ProcessorError:
             raise
-        except ImportError:
+        except ImportError as e:
+            logger.error(f"PyPDF2 not installed: {e}")
             raise ProcessorError(
                 "PyPDF2 is required for PDF processing. " "Install with: pip install PyPDF2"
             )
         except Exception as e:
+            logger.error(f"Failed to process PDF file: {e}", exc_info=True)
             raise ProcessorError(f"Failed to process PDF file: {e}")

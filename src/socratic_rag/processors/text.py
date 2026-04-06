@@ -1,11 +1,14 @@
 """Text file processor."""
 
+import logging
 from pathlib import Path
 from typing import List
 
 from ..exceptions import ProcessorError
 from ..models import Document
 from .base import BaseDocumentProcessor
+
+logger = logging.getLogger(__name__)
 
 
 class TextProcessor(BaseDocumentProcessor):
@@ -58,4 +61,5 @@ class TextProcessor(BaseDocumentProcessor):
         except ProcessorError:
             raise
         except Exception as e:
+            logger.error(f"Failed to process text file: {e}", exc_info=True)
             raise ProcessorError(f"Failed to process text file: {e}")
