@@ -1,11 +1,14 @@
 """ChromaDB vector store provider."""
 
 import json
+import logging
 from typing import Any, Dict, List, Optional
 
 from ..exceptions import VectorStoreError
 from ..models import Chunk, SearchResult
 from .base import BaseVectorStore
+
+logger = logging.getLogger(__name__)
 
 
 class ChromaDBVectorStore(BaseVectorStore):
@@ -52,12 +55,14 @@ class ChromaDBVectorStore(BaseVectorStore):
                 metadata={"hnsw:space": "cosine"},
             )
 
-        except ImportError:
+        except ImportError as e:
+            logger.error(f"chromadb not installed: {e}")
             raise VectorStoreError(
                 "chromadb is required for ChromaDBVectorStore. "
                 "Install with: pip install chromadb"
             )
         except Exception as e:
+            logger.error(f"Failed to initialize ChromaDB: {e}", exc_info=True)
             raise VectorStoreError(f"Failed to initialize ChromaDB: {e}")
 
     def add_documents(
