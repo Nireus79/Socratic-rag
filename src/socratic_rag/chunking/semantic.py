@@ -69,7 +69,7 @@ class SemanticChunker(BaseChunker):
 
         # Split on sentence boundaries
         # Handles: . ! ? followed by space and capital letter
-        sentences = re.split(r'(?<=[.!?])\s+(?=[A-Z])', text)
+        sentences = re.split(r"(?<=[.!?])\s+(?=[A-Z])", text)
         return [s.strip() for s in sentences if s.strip()]
 
     def _split_into_paragraphs(self, text: str) -> List[str]:
@@ -82,7 +82,7 @@ class SemanticChunker(BaseChunker):
         Returns:
             List of paragraphs
         """
-        paragraphs = text.split('\n\n')
+        paragraphs = text.split("\n\n")
         return [p.strip() for p in paragraphs if p.strip()]
 
     def chunk(
@@ -126,9 +126,7 @@ class SemanticChunker(BaseChunker):
 
                 for sentence in sentences:
                     # Check if adding this sentence would exceed max_chunk_size
-                    sentence_with_space = (
-                        sentence if not current_chunk else " " + sentence
-                    )
+                    sentence_with_space = sentence if not current_chunk else " " + sentence
                     potential_chunk = current_chunk + sentence_with_space
 
                     if len(potential_chunk) > self.max_chunk_size:
@@ -142,9 +140,7 @@ class SemanticChunker(BaseChunker):
                                 end_char=char_position,
                             )
                             chunks.append(chunk)
-                            logger.debug(
-                                f"Created semantic chunk: {len(current_chunk)} chars"
-                            )
+                            logger.debug(f"Created semantic chunk: {len(current_chunk)} chars")
 
                         # Start new chunk with current sentence
                         current_chunk = sentence

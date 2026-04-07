@@ -57,7 +57,9 @@ class PDFProcessor(BaseDocumentProcessor):
                         if text:
                             full_text += f"\n--- Page {page_num} ---\n{text}"
                     except Exception as e:
-                        logger.warning(f"Failed to extract text from page {page_num}: {e}", exc_info=True)
+                        logger.warning(
+                            f"Failed to extract text from page {page_num}: {e}", exc_info=True
+                        )
                         # Continue with next page if one page fails
 
             if not full_text.strip():

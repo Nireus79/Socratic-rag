@@ -143,9 +143,7 @@ class DocumentDeduplicator:
                 embedding = await self.embedder.embed_text(doc.content)
                 embeddings.append(embedding)
             except Exception as e:
-                self.logger.error(
-                    f"Error embedding document {doc.document_id}: {e}"
-                )
+                self.logger.error(f"Error embedding document {doc.document_id}: {e}")
                 embeddings.append(None)
 
         # Compare each document with others
@@ -200,9 +198,7 @@ class DocumentDeduplicator:
             Tuple of (deduplicated documents, duplicate groups)
         """
         if keep_strategy not in ("first", "longest", "latest"):
-            raise ValueError(
-                "keep_strategy must be 'first', 'longest', or 'latest'"
-            )
+            raise ValueError("keep_strategy must be 'first', 'longest', or 'latest'")
 
         # Find duplicates
         dedup_results = await self.find_duplicates(documents)
@@ -227,9 +223,7 @@ class DocumentDeduplicator:
                     )
 
                 groups_dict[primary_id].duplicate_ids.append(dup_id)
-                groups_dict[primary_id].similarity_scores[dup_id] = (
-                    result.similarity_score
-                )
+                groups_dict[primary_id].similarity_scores[dup_id] = result.similarity_score
                 processed.add(dup_id)
 
         # Select which documents to keep
@@ -239,18 +233,12 @@ class DocumentDeduplicator:
         for doc in documents:
             if doc.document_id not in processed:
                 kept_ids.add(doc.document_id)
-            elif doc.document_id in [
-                g.primary_id for g in groups_dict.values()
-            ]:
+            elif doc.document_id in [g.primary_id for g in groups_dict.values()]:
                 kept_ids.add(doc.document_id)
 
         # Apply keep strategy for duplicates
         for group in groups_dict.values():
-            dup_docs = [
-                doc_by_id[dup_id]
-                for dup_id in group.duplicate_ids
-                if dup_id in doc_by_id
-            ]
+            dup_docs = [doc_by_id[dup_id] for dup_id in group.duplicate_ids if dup_id in doc_by_id]
 
             if keep_strategy == "longest":
                 primary = max(dup_docs, key=lambda d: len(d.content))
