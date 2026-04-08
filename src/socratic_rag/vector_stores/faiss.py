@@ -12,7 +12,6 @@ from .base import BaseVectorStore
 logger = logging.getLogger(__name__)
 
 
-
 class FAISSVectorStore(BaseVectorStore):
     """FAISS vector store provider.
 

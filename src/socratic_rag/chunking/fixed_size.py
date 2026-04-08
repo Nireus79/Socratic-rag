@@ -29,9 +29,7 @@ class FixedSizeChunker(BaseChunker):
         if chunk_size <= 0:
             raise ChunkingError(f"chunk_size must be positive, got {chunk_size}")
         if overlap < 0 or overlap >= chunk_size:
-            raise ChunkingError(
-                f"overlap must be between 0 and chunk_size, got {overlap}"
-            )
+            raise ChunkingError(f"overlap must be between 0 and chunk_size, got {overlap}")
 
         self.chunk_size = chunk_size
         self.overlap = overlap

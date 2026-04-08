@@ -81,8 +81,7 @@ class HybridSearcher:
 
         # Combine scores
         combined_scores = (
-            self.semantic_weight * np.array(semantic_scores)
-            + self.keyword_weight * keyword_scores
+            self.semantic_weight * np.array(semantic_scores) + self.keyword_weight * keyword_scores
         )
 
         # Get top k indices
