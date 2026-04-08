@@ -1,15 +1,14 @@
-import logging
-
-logger = logging.getLogger(__name__)
-
 """Qdrant vector store provider."""
 
 import json
+import logging
 from typing import Any, Dict, List, Optional
 
 from ..exceptions import VectorStoreError
 from ..models import Chunk, SearchResult
 from .base import BaseVectorStore
+
+logger = logging.getLogger(__name__)
 
 
 class QdrantVectorStore(BaseVectorStore):

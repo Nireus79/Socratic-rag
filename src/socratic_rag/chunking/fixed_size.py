@@ -1,14 +1,13 @@
-import logging
-
-logger = logging.getLogger(__name__)
-
 """Fixed-size chunking strategy."""
 
-from typing import Any, Dict, List, Optional
+import logging
+from typing import List
 
 from ..exceptions import ChunkingError
 from ..models import Chunk
 from .base import BaseChunker
+
+logger = logging.getLogger(__name__)
 
 
 class FixedSizeChunker(BaseChunker):
@@ -28,60 +27,33 @@ class FixedSizeChunker(BaseChunker):
             ChunkingError: If parameters are invalid.
         """
         if chunk_size <= 0:
-            raise ChunkingError("chunk_size must be positive")
-        if overlap >= chunk_size:
-            raise ChunkingError("overlap must be less than chunk_size")
-        if overlap < 0:
-            raise ChunkingError("overlap cannot be negative")
+            raise ChunkingError(f"chunk_size must be positive, got {chunk_size}")
+        if overlap < 0 or overlap >= chunk_size:
+            raise ChunkingError(
+                f"overlap must be between 0 and chunk_size, got {overlap}"
+            )
 
         self.chunk_size = chunk_size
         self.overlap = overlap
 
-    def chunk(
-        self,
-        text: str,
-        document_id: str,
-        metadata: Optional[Dict[str, Any]] = None,
-    ) -> List[Chunk]:
+    async def chunk(self, text: str) -> List[Chunk]:
         """Split text into fixed-size chunks.
 
         Args:
-            text: Text to chunk.
-            document_id: ID of the document.
-            metadata: Optional metadata to attach to chunks.
+            text: Text to split
 
         Returns:
-            List of Chunk objects.
-
-        Raises:
-            ChunkingError: If chunking fails.
+            List of Chunk objects
         """
-        try:
-            if not text:
-                raise ChunkingError("Cannot chunk empty text")
+        if not text:
+            return []
 
-            chunks: List[Chunk] = []
-            start = 0
+        chunks = []
+        step = self.chunk_size - self.overlap
 
-            while start < len(text):
-                end = min(start + self.chunk_size, len(text))
-                chunk_text = text[start:end]
+        for i in range(0, len(text), step):
+            chunk_text = text[i : i + self.chunk_size]
+            if chunk_text.strip():
+                chunks.append(Chunk(content=chunk_text, metadata={"start": i}))
 
-                chunk = Chunk.create(
-                    text=chunk_text,
-                    document_id=document_id,
-                    metadata=metadata,
-                    start_char=start,
-                    end_char=end,
-                )
-                chunks.append(chunk)
-
-                # Move start position by chunk_size - overlap
-                start += self.chunk_size - self.overlap
-
-            return chunks
-
-        except ChunkingError:
-            raise
-        except Exception as e:
-            raise ChunkingError(f"Failed to chunk text: {e}")
+        return chunks

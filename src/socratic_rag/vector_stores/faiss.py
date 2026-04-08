@@ -1,9 +1,6 @@
-import logging
-
-logger = logging.getLogger(__name__)
-
 """FAISS vector store provider."""
 
+import logging
 import pickle
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -11,6 +8,9 @@ from typing import Any, Dict, List, Optional
 from ..exceptions import VectorStoreError
 from ..models import Chunk, SearchResult
 from .base import BaseVectorStore
+
+logger = logging.getLogger(__name__)
+
 
 
 class FAISSVectorStore(BaseVectorStore):

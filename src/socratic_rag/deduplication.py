@@ -63,7 +63,7 @@ class DocumentDeduplicator:
 
         if distance_metric not in ("cosine", "euclidean", "manhattan"):
             raise ValueError(
-                f"Invalid distance_metric. Must be 'cosine', 'euclidean', or 'manhattan'"
+                "Invalid distance_metric. Must be 'cosine', 'euclidean', or 'manhattan'"
             )
 
     def compute_similarity(
