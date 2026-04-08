@@ -61,15 +61,14 @@ class FixedSizeChunker(BaseChunker):
 
         for i in range(0, len(text), step):
             chunk_text = text[i : i + self.chunk_size]
-            if chunk_text.strip():
-                chunks.append(
-                    Chunk.create(
-                        text=chunk_text,
-                        document_id=document_id,
-                        metadata=metadata,
-                        start_char=i,
-                        end_char=min(i + self.chunk_size, len(text)),
-                    )
+            chunks.append(
+                Chunk.create(
+                    text=chunk_text,
+                    document_id=document_id,
+                    metadata=metadata,
+                    start_char=i,
+                    end_char=min(i + self.chunk_size, len(text)),
                 )
+            )
 
         return chunks
