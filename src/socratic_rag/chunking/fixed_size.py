@@ -1,7 +1,7 @@
 """Fixed-size chunking strategy."""
 
 import logging
-from typing import List
+from typing import Any, Dict, List, Optional
 
 from ..exceptions import ChunkingError
 from ..models import Chunk
@@ -34,17 +34,27 @@ class FixedSizeChunker(BaseChunker):
         self.chunk_size = chunk_size
         self.overlap = overlap
 
-    async def chunk(self, text: str) -> List[Chunk]:
+    def chunk(
+        self,
+        text: str,
+        document_id: str,
+        metadata: Optional[Dict[str, Any]] = None,
+    ) -> List[Chunk]:
         """Split text into fixed-size chunks.
 
         Args:
             text: Text to split
+            document_id: ID of the document
+            metadata: Optional metadata to attach to chunks
 
         Returns:
             List of Chunk objects
+
+        Raises:
+            ChunkingError: If text is empty.
         """
         if not text:
-            return []
+            raise ChunkingError("Cannot chunk empty text")
 
         chunks = []
         step = self.chunk_size - self.overlap
@@ -52,6 +62,14 @@ class FixedSizeChunker(BaseChunker):
         for i in range(0, len(text), step):
             chunk_text = text[i : i + self.chunk_size]
             if chunk_text.strip():
-                chunks.append(Chunk(content=chunk_text, metadata={"start": i}))
+                chunks.append(
+                    Chunk.create(
+                        text=chunk_text,
+                        document_id=document_id,
+                        metadata=metadata,
+                        start_char=i,
+                        end_char=min(i + self.chunk_size, len(text)),
+                    )
+                )
 
         return chunks
