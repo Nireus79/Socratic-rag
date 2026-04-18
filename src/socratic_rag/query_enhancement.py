@@ -1,8 +1,8 @@
 """Query enhancement for RAG."""
 import logging
-from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Any
 import re
+from dataclasses import dataclass, field
+from typing import Any, Dict, List
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +17,7 @@ class RankedResult:
 class QueryReranker:
     def __init__(self, model: str = "semantic"):
         self.model = model
-    
+
     def rerank(self, query: str, results: List[Dict[str, Any]]) -> List[RankedResult]:
         if not results:
             return []
@@ -34,7 +34,7 @@ class QueryReranker:
             ))
         ranked.sort(key=lambda x: x.score, reverse=True)
         return ranked
-    
+
     def _compute_relevance(self, query: str, content: str) -> float:
         query_words = set(query.lower().split())
         content_words = set(content.lower().split())
@@ -42,7 +42,7 @@ class QueryReranker:
             return 0.0
         overlap = len(query_words & content_words)
         return min(1.0, overlap / len(query_words))
-    
+
     def _get_reason(self, query: str, content: str) -> str:
         query_words = query.lower().split()
         content_lower = content.lower()
@@ -61,7 +61,7 @@ class QueryExpander:
             "student": ["learner", "user", "participant"],
             "test": ["exam", "assessment", "quiz"],
         }
-    
+
     def expand_query(self, query: str) -> List[str]:
         expansions = [query]
         words = query.lower().split()
@@ -83,7 +83,7 @@ class MultimodalContent:
 class MultimodalHandler:
     def __init__(self):
         self.supported_formats = ["text", "image", "code", "table"]
-    
+
     def extract_multimodal_content(self, document: str) -> MultimodalContent:
         text_content = document
         images = self._extract_images(document)
@@ -95,7 +95,7 @@ class MultimodalHandler:
             code_blocks=code_blocks,
             tables=tables,
         )
-    
+
     def _extract_images(self, document: str) -> List[Dict[str, Any]]:
         pattern = r'!\[([^\]]*)\]\(([^)]+)\)'
         matches = re.finditer(pattern, document)
@@ -107,7 +107,7 @@ class MultimodalHandler:
                 "type": "image",
             })
         return images
-    
+
     def _extract_code(self, document: str) -> List[str]:
         pattern = r'```([^`]+)```'
         matches = re.finditer(pattern, document, re.DOTALL)
@@ -115,7 +115,7 @@ class MultimodalHandler:
         for match in matches:
             code_blocks.append(match.group(1).strip())
         return code_blocks
-    
+
     def _extract_tables(self, document: str) -> List[Dict[str, Any]]:
         lines = document.split("\n")
         tables = []
@@ -132,7 +132,7 @@ class MultimodalHandler:
             else:
                 i += 1
         return tables
-    
+
     def process_multimodal(self, content: MultimodalContent) -> Dict[str, Any]:
         return {
             "text_length": len(content.text),
@@ -141,7 +141,7 @@ class MultimodalHandler:
             "table_count": len(content.tables),
             "content_types": self._get_content_types(content),
         }
-    
+
     def _get_content_types(self, content: MultimodalContent) -> List[str]:
         types = ["text"]
         if content.images:

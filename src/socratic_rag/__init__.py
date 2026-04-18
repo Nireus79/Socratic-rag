@@ -17,6 +17,8 @@ from .exceptions import (
     SocraticRAGError,
     VectorStoreError,
 )
+from .llm_rag import LLMPoweredRAG
+from .models import Chunk, Document, RAGConfig, SearchResult
 from .query_enhancement import (
     MultimodalContent,
     MultimodalHandler,
@@ -24,9 +26,6 @@ from .query_enhancement import (
     QueryReranker,
     RankedResult,
 )
-
-from .llm_rag import LLMPoweredRAG
-from .models import Chunk, Document, RAGConfig, SearchResult
 from .vector_stores import BaseVectorStore, ChromaDBVectorStore, FAISSVectorStore, QdrantVectorStore
 
 __version__ = "0.2.0"
