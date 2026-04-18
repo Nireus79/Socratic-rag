@@ -67,6 +67,5 @@ __all__ = [
     "RankedResult",
     "MultimodalHandler",
     "MultimodalContent",
-
     "DuplicateGroup",
 ]

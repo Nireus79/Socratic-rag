@@ -1,10 +1,12 @@
 """Query enhancement for RAG."""
+
 import logging
 import re
 from dataclasses import dataclass, field
 from typing import Any, Dict, List
 
 logger = logging.getLogger(__name__)
+
 
 @dataclass
 class RankedResult:
@@ -13,6 +15,7 @@ class RankedResult:
     score: float
     original_rank: int
     rerank_reason: str = ""
+
 
 class QueryReranker:
     def __init__(self, model: str = "semantic"):
@@ -25,13 +28,15 @@ class QueryReranker:
         for i, result in enumerate(results):
             content = result.get("content", "")
             relevance = self._compute_relevance(query, content)
-            ranked.append(RankedResult(
-                document_id=result.get("id", f"doc_{i}"),
-                content=content,
-                score=relevance,
-                original_rank=i,
-                rerank_reason=self._get_reason(query, content),
-            ))
+            ranked.append(
+                RankedResult(
+                    document_id=result.get("id", f"doc_{i}"),
+                    content=content,
+                    score=relevance,
+                    original_rank=i,
+                    rerank_reason=self._get_reason(query, content),
+                )
+            )
         ranked.sort(key=lambda x: x.score, reverse=True)
         return ranked
 
@@ -54,6 +59,7 @@ class QueryReranker:
         else:
             return "Partial match"
 
+
 class QueryExpander:
     def __init__(self):
         self.synonyms = {
@@ -73,12 +79,14 @@ class QueryExpander:
                         expansions.append(expanded)
         return expansions[:5]
 
+
 @dataclass
 class MultimodalContent:
     text: str
     images: List[Dict[str, Any]] = field(default_factory=list)
     tables: List[Dict[str, Any]] = field(default_factory=list)
     code_blocks: List[str] = field(default_factory=list)
+
 
 class MultimodalHandler:
     def __init__(self):
@@ -97,19 +105,21 @@ class MultimodalHandler:
         )
 
     def _extract_images(self, document: str) -> List[Dict[str, Any]]:
-        pattern = r'!\[([^\]]*)\]\(([^)]+)\)'
+        pattern = r"!\[([^\]]*)\]\(([^)]+)\)"
         matches = re.finditer(pattern, document)
         images = []
         for match in matches:
-            images.append({
-                "alt_text": match.group(1),
-                "url": match.group(2),
-                "type": "image",
-            })
+            images.append(
+                {
+                    "alt_text": match.group(1),
+                    "url": match.group(2),
+                    "type": "image",
+                }
+            )
         return images
 
     def _extract_code(self, document: str) -> List[str]:
-        pattern = r'```([^`]+)```'
+        pattern = r"```([^`]+)```"
         matches = re.finditer(pattern, document, re.DOTALL)
         code_blocks = []
         for match in matches:
