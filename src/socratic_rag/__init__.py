@@ -17,11 +17,19 @@ from .exceptions import (
     SocraticRAGError,
     VectorStoreError,
 )
+from .query_enhancement import (
+    MultimodalContent,
+    MultimodalHandler,
+    QueryExpander,
+    QueryReranker,
+    RankedResult,
+)
+
 from .llm_rag import LLMPoweredRAG
 from .models import Chunk, Document, RAGConfig, SearchResult
 from .vector_stores import BaseVectorStore, ChromaDBVectorStore, FAISSVectorStore, QdrantVectorStore
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "RAGClient",
@@ -54,5 +62,12 @@ __all__ = [
     # Deduplication
     "DocumentDeduplicator",
     "DeduplicateResult",
+    # Query Enhancement
+    "QueryReranker",
+    "QueryExpander",
+    "RankedResult",
+    "MultimodalHandler",
+    "MultimodalContent",
+
     "DuplicateGroup",
 ]
