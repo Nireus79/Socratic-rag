@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """
 Vector database for knowledge management in Socrates AI
 """

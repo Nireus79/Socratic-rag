@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """
 Socratic RAG - Vector Database and RAG Implementation
 
