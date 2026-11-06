@@ -1,3 +1,5 @@
+> **Proof of concept, not a product.** This library belongs to the earlier Python research prototype ([Socrates](https://github.com/Nireus79/Socrates)) and is not maintained as a product. The current products are listed at [nireus79.github.io](https://nireus79.github.io/). Contact: Hermes_creative@proton.me.
+
 # Socratic RAG
 
 [![PyPI version](https://badge.fury.io/py/socratic-rag.svg)](https://badge.fury.io/py/socratic-rag)
@@ -15,7 +17,7 @@ Building reliable retrieval systems is complex. Socratic RAG provides production
 - **Document Processing** - Handle Text, PDF, Markdown, and code files out of the box
 - **Async Support** - Full async/await interface for non-blocking operations at scale
 
-Production-grade Retrieval-Augmented Generation (RAG) package for Python.
+Retrieval-Augmented Generation (RAG) package for Python.
 
 ## Features
 
@@ -25,7 +27,7 @@ Production-grade Retrieval-Augmented Generation (RAG) package for Python.
 - **Document Processing**: Text, PDF, Markdown, and code files
 - **Framework Integrations**: Openclaw skills and LangChain components
 - **Async Support**: Full async/await interface for non-blocking operations
-- **Production Ready**: 70%+ test coverage, type hints, comprehensive documentation
+- **Tested**: 70%+ test coverage, type hints, comprehensive documentation
 - **Part of Socrates Ecosystem**: Built on Socrates Nexus for LLM integration
 
 ## Part of the Socrates Ecosystem
@@ -369,7 +371,7 @@ If you use Socratic RAG in your research, please cite:
 
 ```bibtex
 @software{socratic_rag_2024,
-  title={Socratic RAG: Production-grade Retrieval-Augmented Generation},
+  title={Socratic RAG: Retrieval-Augmented Generation},
   author={Your Name},
   year={2024},
   url={https://github.com/Nireus79/Socratic-rag}
