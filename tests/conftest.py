@@ -5,30 +5,12 @@ from pathlib import Path
 
 import pytest
 
-from socratic_rag import RAGClient, RAGConfig
-
 
 @pytest.fixture
 def temp_dir():
     """Provide a temporary directory for testing."""
     with tempfile.TemporaryDirectory() as tmpdir:
         yield Path(tmpdir)
-
-
-@pytest.fixture
-def rag_client():
-    """Provide a RAG client for testing."""
-    config = RAGConfig(
-        vector_store="chromadb",
-        embedder="sentence-transformers",
-        chunking_strategy="fixed",
-        chunk_size=100,
-        chunk_overlap=10,
-    )
-    client = RAGClient(config)
-    yield client
-    # Cleanup
-    client.clear()
 
 
 @pytest.fixture

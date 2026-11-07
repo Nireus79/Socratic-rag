@@ -123,11 +123,13 @@ class MigrationRunner:
             conn = sqlite3.connect(self.db_path)
             cursor = conn.cursor()
 
-            cursor.execute("""
+            cursor.execute(
+                """
                 SELECT name FROM sqlite_master
                 WHERE type='table'
                 ORDER BY name
-                """)
+                """
+            )
 
             tables = [row[0] for row in cursor.fetchall()]
             conn.close()
