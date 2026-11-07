@@ -9,7 +9,7 @@
 
 ## Why Socratic RAG?
 
-Building reliable retrieval systems is complex. Socratic RAG provides production-grade RAG:
+Building reliable retrieval systems is complex. Socratic RAG provides RAG with:
 
 - **Multiple Vector Stores** - ChromaDB, Qdrant, FAISS, Pinecone with extensible provider pattern
 - **Flexible Embeddings** - Sentence Transformers or OpenAI embeddings via Socrates Nexus
@@ -27,12 +27,12 @@ Retrieval-Augmented Generation (RAG) package for Python.
 - **Document Processing**: Text, PDF, Markdown, and code files
 - **Framework Integrations**: Openclaw skills and LangChain components
 - **Async Support**: Full async/await interface for non-blocking operations
-- **Tested**: 70%+ test coverage, type hints, comprehensive documentation
+- **Typed and documented**: type hints and documentation
 - **Part of Socrates Ecosystem**: Built on Socrates Nexus for LLM integration
 
 ## Part of the Socrates Ecosystem
 
-**Socratic RAG** is a core component of the [Socrates Ecosystem](https://github.com/Nireus79/Socrates-nexus/blob/main/ECOSYSTEM.md) - a collection of production-grade AI packages that work together.
+**Socratic RAG** is a core component of the [Socrates Ecosystem](https://github.com/Nireus79/Socrates-nexus/blob/main/ECOSYSTEM.md) - a collection of AI packages from the earlier research prototype.
 
 ### How It Uses Socrates Nexus
 - Embedded document generation uses Socrates Nexus for embeddings
@@ -43,7 +43,7 @@ Retrieval-Augmented Generation (RAG) package for Python.
 - **[Socrates Nexus](https://github.com/Nireus79/Socrates-nexus)** (Dependency) - Universal LLM client
 - **[Socratic Analyzer](https://github.com/Nireus79/Socratic-analyzer)** - Code analysis (also uses Socrates Nexus)
 - **[Socratic Agents](https://github.com/Nireus79/Socratic-agents)** (Coming Q4 2026) - Multi-agent orchestration
-- **[Socratic Knowledge](https://github.com/Nireus79/Socratic-knowledge)** (Coming Q1 2027) - Enterprise knowledge management
+- **[Socratic Knowledge](https://github.com/Nireus79/Socratic-knowledge)** (Coming Q1 2027) - Knowledge management
 
 👉 **Full ecosystem guide**: See [Socrates Nexus ECOSYSTEM.md](https://github.com/Nireus79/Socrates-nexus/blob/main/ECOSYSTEM.md)
 
