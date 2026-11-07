@@ -34,9 +34,9 @@ What actually happens?
 ## Minimal Code Example
 ```python
 # Paste minimal code to reproduce the issue
-from socratic_rag import RAGClient
+from socratic_rag import VectorDatabase
 
-client = RAGClient()
+db = VectorDatabase("./chroma_data")
 # ... code that triggers the bug
 ```
 

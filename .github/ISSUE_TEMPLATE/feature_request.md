@@ -18,9 +18,9 @@ What would this feature enable you to do?
 ## Example
 ```python
 # How would you like to use this feature?
-from socratic_rag import RAGClient
+from socratic_rag import VectorDatabase
 
-client = RAGClient()
+db = VectorDatabase("./chroma_data")
 # ... example usage of the new feature
 ```
 
