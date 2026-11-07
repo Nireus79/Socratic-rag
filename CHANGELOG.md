@@ -5,6 +5,16 @@ All notable changes to Socratic RAG will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.7] - 2026-11-07
+
+### Fixed
+- Creating a `VectorDatabase` raised `NameError` because `EmbeddingCache`, `SearchResultCache` and `KnowledgeEntry` were not imported or defined. They are now imported or defined (`KnowledgeEntry` is in `socratic_rag.models`).
+- `chromadb` is now a required dependency (the module imports it at the top).
+
+### Changed
+- README rewritten to describe only what the code contains. Earlier versions described `RAGClient`, `RAGConfig`, other vector stores, chunking and document readers, none of which exist in the code. The documentation, examples, Docker and Kubernetes files that used them were removed, as were the optional extras that installed nothing used.
+- Unmeasured speedup figures removed from docstrings.
+
 ## [0.1.0] - 2024-03-10
 
 ### Added

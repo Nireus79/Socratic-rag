@@ -1,4 +1,4 @@
-"""Production-grade database connection pool with monitoring and health checks.
+"""Database connection pool with monitoring and health checks.
 
 Features:
 - SQLAlchemy async engine with configurable pool size
@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 
 class DatabaseConnectionPool:
-    """Production-grade connection pool with monitoring capabilities.
+    """Connection pool with monitoring capabilities.
 
     Manages database connections with health checks, performance monitoring,
     and graceful handling of connection exhaustion.

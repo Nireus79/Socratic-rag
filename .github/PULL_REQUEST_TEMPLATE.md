@@ -31,7 +31,7 @@ Coverage: [Y%]
 ## Documentation
 - [ ] Updated README.md if needed
 - [ ] Updated docstrings
-- [ ] Updated docs/ files if applicable
+- [ ] Updated README.md if applicable
 - [ ] Added example code if applicable
 
 ## Code Quality

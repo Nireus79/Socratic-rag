@@ -85,19 +85,19 @@ Aim for:
 
 ```python
 import pytest
-from socratic_rag import RAGClient
+from socratic_rag import VectorDatabase
 
 class TestFeature:
     """Tests for feature."""
 
     @pytest.fixture
-    def client(self):
+    def client(self, tmp_path):
         """Provide test client."""
-        return RAGClient()
+        return VectorDatabase(str(tmp_path / "chroma"))
 
     def test_feature(self, client):
         """Test specific feature."""
-        result = client.method()
+        result = client.search_similar("query")
         assert result is not None
 ```
 
@@ -213,13 +213,6 @@ class NewProcessor(BaseDocumentProcessor):
 - Document new features
 - Add usage examples
 - Update API reference
-
-### Create/Update Docs
-
-- `docs/quickstart.md` - Getting started
-- `docs/vector-stores.md` - Vector store guide
-- `docs/embeddings.md` - Embeddings guide
-- `docs/api-reference.md` - API docs
 
 ### Docstring Format
 

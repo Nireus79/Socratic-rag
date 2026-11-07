@@ -2,7 +2,7 @@
 Search Result Cache for Phase 3 Optimization
 
 Implements TTL-based cache for vector search results.
-Typical speedup: 100ms → 5ms (20x improvement) for cached searches.
+Cached searches are returned without querying the store again (speedup not measured).
 """
 
 import logging

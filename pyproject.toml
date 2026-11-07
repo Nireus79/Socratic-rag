@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "socratic-rag"
-version = "0.1.6"
-description = "Retrieval-augmented generation package: chunking, embeddings and vector stores (research prototype)"
+version = "0.1.7"
+description = "Small vector-search layer (ChromaDB and sentence-transformers) extracted from the Socrates prototype (research prototype)"
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}
@@ -28,44 +28,23 @@ classifiers = [
 dependencies = [
     "numpy>=1.20.0",
     "sentence-transformers>=2.0.0",
+    "chromadb>=0.4.0",
 ]
 
 [project.optional-dependencies]
-chromadb = ["chromadb>=0.4.0"]
-qdrant = ["qdrant-client>=1.0.0"]
-faiss = ["faiss-cpu>=1.7.0"]
-pinecone = ["pinecone-client>=2.0.0"]
-pdf = ["PyPDF2>=3.0.0"]
-markdown = ["markdown>=3.0.0"]
-openclaw = []
-langchain = ["langchain>=0.1.0"]
-nexus = ["socrates-nexus>=0.3.1"]
-
-all = [
-    "chromadb>=0.4.0",
-    "qdrant-client>=1.0.0",
-    "faiss-cpu>=1.7.0",
-    "PyPDF2>=3.0.0",
-    "markdown>=3.0.0",
-    "langchain>=0.1.0",
-    "socrates-nexus>=0.3.1",
-]
-
+# Only needed by connection_pool.py and read_write_split.py
+database = ["sqlalchemy>=2.0"]
 dev = [
     "pytest>=7.0",
-    "pytest-asyncio>=0.21.0",
-    "pytest-benchmark>=4.0",
     "pytest-cov>=4.0",
-    "black>=23.0",
+    "black>=23.0,<26",
     "ruff>=0.1.0",
     "mypy>=1.0",
-    "chromadb>=0.4.0",
-    "langchain>=0.1.0",
 ]
 
 [project.urls]
 Homepage = "https://github.com/Nireus79/Socratic-rag"
-Documentation = "https://github.com/Nireus79/Socratic-rag/tree/main/docs"
+Documentation = "https://github.com/Nireus79/Socratic-rag#readme"
 Repository = "https://github.com/Nireus79/Socratic-rag.git"
 Issues = "https://github.com/Nireus79/Socratic-rag/issues"
 
@@ -131,4 +110,3 @@ markers = [
     "integration: Integration tests",
     "slow: Slow tests",
 ]
-asyncio_mode = "auto"

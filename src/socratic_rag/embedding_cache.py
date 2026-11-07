@@ -2,7 +2,7 @@
 Embedding Cache for Phase 3 Optimization
 
 Implements LRU cache for text embeddings to avoid redundant encoding.
-Typical speedup: 50ms → 0.5ms (100x improvement) for cached embeddings.
+Cached embeddings are returned without running the model again (speedup not measured).
 """
 
 import hashlib

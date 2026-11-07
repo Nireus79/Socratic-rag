@@ -9,5 +9,5 @@ from __future__ import annotations
 from .models import KnowledgeEntry
 from .vector_db import VectorDatabase
 
-__version__ = "0.1.6"
+__version__ = "0.1.7"
 __all__ = ["KnowledgeEntry", "VectorDatabase"]
