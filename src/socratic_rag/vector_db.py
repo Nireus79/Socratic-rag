@@ -1,20 +1,20 @@
-from __future__ import annotations
-
 """
 Vector database for knowledge management in Socrates AI
 """
 
+from __future__ import annotations
+
 import gc
 import logging
 import os
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import chromadb
 from sentence_transformers import SentenceTransformer
 
-# from socratic_system.database.embedding_cache import EmbeddingCache  # removed monolith dependency
-# from socratic_system.database.search_cache import SearchResultCache  # removed monolith dependency
-# from socratic_system.models import KnowledgeEntry  # removed monolith dependency
+from .embedding_cache import EmbeddingCache
+from .models import KnowledgeEntry
+from .search_cache import SearchResultCache
 
 
 class VectorDatabase:
@@ -99,7 +99,7 @@ class VectorDatabase:
                 ) from e
         return self._embedding_model_instance
 
-    def _format_metadata_for_chromadb(self, metadata: Optional[Dict]) -> Dict:
+    def _format_metadata_for_chromadb(self, metadata: Dict | None) -> Dict:
         """
         Convert metadata to ChromaDB-compatible format.
         ChromaDB only supports primitive types (str, int, float, bool, None).
@@ -246,7 +246,7 @@ class VectorDatabase:
             )
 
     def search_similar(
-        self, query: str, top_k: int = 5, project_id: Optional[str] = None
+        self, query: str, top_k: int = 5, project_id: str | None = None
     ) -> List[Dict]:
         """Search for similar knowledge entries
 
@@ -309,7 +309,7 @@ class VectorDatabase:
         query: str,
         strategy: str = "snippet",
         top_k: int = 5,
-        project_id: Optional[str] = None,
+        project_id: str | None = None,
     ) -> List[Dict]:
         """
         Enhanced search with adaptive content loading.
@@ -529,7 +529,7 @@ class VectorDatabase:
             self.logger.warning(f"Failed to import project knowledge: {e}")
             return count
 
-    def _build_project_filter(self, project_id: Optional[str] = None) -> Optional[Dict]:
+    def _build_project_filter(self, project_id: str | None = None) -> Dict | None:
         """Build ChromaDB where filter for project_id
 
         Args:
@@ -581,7 +581,7 @@ class VectorDatabase:
             self.logger.warning(f"Failed to delete project knowledge: {e}")
             return 0
 
-    def count_chunks_by_source(self, source: str, project_id: Optional[str] = None) -> int:
+    def count_chunks_by_source(self, source: str, project_id: str | None = None) -> int:
         """Count chunks (entries) for a specific document source.
 
         Args:

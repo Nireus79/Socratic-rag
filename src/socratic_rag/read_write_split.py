@@ -64,9 +64,8 @@ from enum import Enum
 from functools import wraps
 from typing import Any, AsyncContextManager, Callable
 
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from socratic_system.database.connection_pool import DatabaseConnectionPool
+from sqlalchemy.ext.asyncio import AsyncSession
 
 logger = logging.getLogger(__name__)
 
