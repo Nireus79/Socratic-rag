@@ -4,9 +4,9 @@ Complete guide for deploying Socratic RAG in different environments.
 
 ## Pre-Deployment Checklist
 
-- [ ] Code tested locally (110+ tests passing)
+- [ ] Code tested locally (tests passing)
 - [ ] Type hints verified (MyPy strict)
-- [ ] Performance benchmarked (meets SLA)
+- [ ] Performance measured against your own requirements
 - [ ] Security reviewed (no secrets in code)
 - [ ] Documentation complete
 - [ ] Version bumped in pyproject.toml

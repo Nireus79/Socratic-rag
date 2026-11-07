@@ -4,20 +4,20 @@
 
 ### What is Socratic RAG?
 
-Socratic RAG is a production-grade Python package for building Retrieval-Augmented Generation (RAG) systems. It provides:
+Socratic RAG is a Python package for building Retrieval-Augmented Generation (RAG) systems. It provides:
 
 - **Multiple vector stores**: ChromaDB, Qdrant, FAISS (extensible for more)
 - **Flexible embeddings**: Sentence Transformers, OpenAI (via Socrates Nexus)
 - **Smart document processing**: Text, PDF, Markdown files
 - **Framework integrations**: Openclaw skills, LangChain components
 - **Async support**: Non-blocking operations with asyncio
-- **Production-ready**: 70%+ test coverage, type hints, comprehensive docs
+- **Typed and documented**: type hints and documentation
 
 ### Why use Socratic RAG instead of alternatives?
 
 **Socratic RAG excels at**:
 - **Flexibility**: Choose your vector store, embeddings, chunking strategy
-- **Production-ready**: Comprehensive testing, error handling, validation
+- **Tested**: automated tests, error handling, input validation
 - **Extensibility**: Provider pattern makes adding new backends easy
 - **Documentation**: Extensive guides, examples, API reference
 - **Framework support**: Built-in integrations with popular frameworks
@@ -25,14 +25,7 @@ Socratic RAG is a production-grade Python package for building Retrieval-Augment
 
 ### Is Socratic RAG production-ready?
 
-**Yes!** v0.1.0 is production-ready with:
-- ✅ 110+ tests with 70%+ code coverage
-- ✅ Type hints (100% MyPy compliant)
-- ✅ Comprehensive error handling
-- ✅ Input validation on all APIs
-- ✅ Full documentation
-- ✅ CI/CD workflows
-- ✅ Security best practices
+No claim is made. It is a research prototype that is not maintained as a product. It has automated tests and type hints, but it has not been reviewed for security or load-tested. Evaluate it yourself before relying on it.
 
 ### What license is Socratic RAG under?
 

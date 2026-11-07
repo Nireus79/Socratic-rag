@@ -8,5 +8,5 @@ Extracted from Socrates v1.3.3
 
 from .vector_db import VectorDatabase
 
-__version__ = "1.3.3"
+__version__ = "0.1.5"
 __all__ = ["VectorDatabase"]

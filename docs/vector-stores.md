@@ -59,14 +59,13 @@ client = RAGClient(config)
 **Best for**: Production deployments, scalable systems, distributed setups
 
 **Features**:
-- Production-grade vector database
+- Vector database for larger deployments
 - Supports local and remote instances
 - Distributed clustering
 - Advanced filtering and metadata support
 
 **Pros**:
 - ✅ Highly scalable
-- ✅ Production-ready
 - ✅ Excellent performance
 - ✅ Advanced filtering
 - ✅ REST and gRPC APIs

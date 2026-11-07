@@ -2,7 +2,7 @@
 
 ## System Overview
 
-Socratic RAG provides production-grade Retrieval-Augmented Generation (RAG) with support for multiple vector stores, flexible embeddings, smart chunking, and full async/await support.
+Socratic RAG provides Retrieval-Augmented Generation (RAG) with support for multiple vector stores, flexible embeddings, smart chunking, and full async/await support.
 
 ## Core Components
 

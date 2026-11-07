@@ -4,18 +4,17 @@
 
 [![PyPI version](https://badge.fury.io/py/socratic-rag.svg)](https://badge.fury.io/py/socratic-rag)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Test Coverage](https://img.shields.io/badge/coverage-70%25-brightgreen.svg)](https://github.com/Nireus79/Socratic-rag)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 
 ## Why Socratic RAG?
 
-Building reliable retrieval systems is complex. Socratic RAG provides RAG with:
+Socratic RAG is a small retrieval-augmented generation package with:
 
 - **Multiple Vector Stores** - ChromaDB, Qdrant, FAISS, Pinecone with extensible provider pattern
 - **Flexible Embeddings** - Sentence Transformers or OpenAI embeddings via Socrates Nexus
 - **Smart Chunking** - Fixed-size, semantic, and recursive strategies for optimal chunk processing
 - **Document Processing** - Handle Text, PDF, Markdown, and code files out of the box
-- **Async Support** - Full async/await interface for non-blocking operations at scale
+- **Async Support** - Full async/await interface for non-blocking operations
 
 Retrieval-Augmented Generation (RAG) package for Python.
 
@@ -32,7 +31,6 @@ Retrieval-Augmented Generation (RAG) package for Python.
 
 ## Part of the Socrates Ecosystem
 
-**Socratic RAG** is a core component of the [Socrates Ecosystem](https://github.com/Nireus79/Socrates-nexus/blob/main/ECOSYSTEM.md) - a collection of AI packages from the earlier research prototype.
 
 ### How It Uses Socrates Nexus
 - Embedded document generation uses Socrates Nexus for embeddings
@@ -45,7 +43,6 @@ Retrieval-Augmented Generation (RAG) package for Python.
 - **[Socratic Agents](https://github.com/Nireus79/Socratic-agents)** (Coming Q4 2026) - Multi-agent orchestration
 - **[Socratic Knowledge](https://github.com/Nireus79/Socratic-knowledge)** (Coming Q1 2027) - Knowledge management
 
-👉 **Full ecosystem guide**: See [Socrates Nexus ECOSYSTEM.md](https://github.com/Nireus79/Socrates-nexus/blob/main/ECOSYSTEM.md)
 
 📊 **Track development**: View the [Socrates Ecosystem Roadmap](https://github.com/users/Nireus79/projects/3) to see progress across all packages
 
@@ -417,14 +414,12 @@ If you use Socratic RAG in your research, please cite:
 - **[Deployment Guide](DEPLOYMENT_GUIDE.md)** - Local, Docker, production, Kubernetes, AWS, GCP
 - **[Kubernetes Setup](kubernetes/README.md)** - Kubernetes manifests and deployment
 - **[Docker Setup](examples/07_docker_containerization.py)** - Docker containerization examples
-- **[Performance Guide](PERFORMANCE_BENCHMARKING.md)** - Benchmarks, optimization, scaling
 - **[Troubleshooting](TROUBLESHOOTING.md)** - Common issues and solutions
 
 ### Community & Project
 - **[FAQ](FAQ.md)** - 50+ frequently asked questions
 - **[Code of Conduct](CODE_OF_CONDUCT.md)** - Community guidelines
 - **[Security Policy](SECURITY.md)** - Vulnerability reporting and best practices
-- **[ROADMAP](ROADMAP.md)** - Future plans for v0.2.0, v0.3.0, v1.0.0
 - **[CONTRIBUTING](CONTRIBUTING.md)** - Contribution guidelines
 
 ### Examples

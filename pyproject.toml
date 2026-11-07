@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "socratic-rag"
-version = "0.1.4"
-description = "Production-grade Retrieval-Augmented Generation package"
+version = "0.1.5"
+description = "Retrieval-augmented generation package: chunking, embeddings and vector stores (research prototype)"
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}
 authors = [
-    {name = "Socratic RAG", email = "info@socratic-rag.dev"}
+    {name = "Efthimios Angelopoulos", email = "Hermes_creative@proton.me"}
 ]
 keywords = ["rag", "retrieval-augmented-generation", "nlp", "embeddings", "vector-database"]
 classifiers = [
